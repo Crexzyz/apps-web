@@ -5,18 +5,6 @@ $nav-background-hover: rgb(0, 114, 0);
 $nav-text-color: white;
 $transition-speed: 0.5s;
 
-body::-webkit-scrollbar {
-    width: 0.25rem;
-}
-  
-body::-webkit-scrollbar-track {
-    background: #1e1e24;
-}
-  
-body::-webkit-scrollbar-thumb {
-    background: $nav-background;
-}
-
 .nav-style {
     background-color: $nav-background;
     color: $nav-text-color;
@@ -75,7 +63,6 @@ footer {
     text-align: center;
     width: 100%;
     bottom: 0;
-    position: fixed;
 }
 
 .collapse-button svg {
