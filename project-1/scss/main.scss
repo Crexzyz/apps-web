@@ -1,0 +1,88 @@
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+$nav-background: rgb(0, 54, 0);
+$nav-background-hover: rgb(0, 114, 0);
+$nav-text-color: white;
+$transition-speed: 0.5s;
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+  
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+  
+body::-webkit-scrollbar-thumb {
+    background: $nav-background;
+}
+
+.nav-style {
+    background-color: $nav-background;
+    color: $nav-text-color;
+}
+
+.navbar-top {
+    @extend .navbar;
+    @extend .navbar-expand-lg;
+    @extend .nav-style;
+}
+
+.nav-collapser {
+    @extend .navbar-toggler;
+    @extend .nav-style;
+}
+
+.collapse-button {
+    @extend .nav-style;
+    @extend .btn;
+    @extend .nav-link;
+}
+
+.nav-list {
+    @extend .nav-style;
+    @extend .navbar-collapse;
+    @extend .justify-content-center;
+    @extend .m-0;
+    @extend .list-unstyled;
+}
+
+.sublist-style {
+    @extend .nav-style;
+    @extend .list-unstyled;
+    @extend .m-0;
+}
+
+.width-transition {
+    transition: width $transition-speed ease;
+}
+
+.nav-item {
+    @extend .nav-style;
+    @extend .nav-link;
+    width: 100%;
+    text-align: left;
+}
+
+.nav-item:hover, .nav-item:active, .nav-item:focus {
+    background-color: $nav-background-hover;
+    color: $nav-text-color;
+    @extend .nav-link;
+}
+
+footer {
+    @extend .nav-style;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+
+.collapse-button svg {
+    transition: $transition-speed;
+}
+
+.collapse-button:hover svg {
+    transform: rotate(90deg);
+    transition: $transition-speed;
+}
