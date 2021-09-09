@@ -42,6 +42,10 @@ section {
     padding: 1rem;
 }
 
+svg {
+    fill: currentColor;
+}
+
 .nav-style {
     background-color: $nav-background;
     color: $nav-text-color;
@@ -141,4 +145,14 @@ section {
 
 .details-card div {
     padding: 0rem 1rem 0rem 1rem;
+}
+
+.nav-svg {
+    height: 1rem;
+    width: 1rem;
+}
+
+.h2-svg {
+    height: 2rem;
+    width: 2rem;
 }
