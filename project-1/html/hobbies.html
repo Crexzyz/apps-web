@@ -3,11 +3,6 @@
 <!--#set var="title" value="Pasatiempos" -->
 <!--#include virtual="/head.html" -->
 <body>
-    <svg class="d-none">
-        <symbol id="caret-down" viewBox="0 0 16 16">
-            <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
-        </symbol>
-    </svg>
     <!--#include virtual="/header.html" -->
     <main>
         <h1>Mis pasatiempos</h1>
@@ -21,6 +16,7 @@
                         <li>Days Gone</li>
                         <li>Minecraft</li>
                         <li>Hollow Knight</li>
+                        <li>Spider-Man (PS4)</li>
                     </ul>
                     Los que más juego actualmente son:
                     <ul>
@@ -30,7 +26,9 @@
                     </ul>
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#games" aria-expanded="false" aria-controls="games">
-                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
                 </button>
             </article>
             <article class="details-card">
@@ -50,7 +48,9 @@
                     Y mucho YouTube variado
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#movies" aria-expanded="false" aria-controls="movies">
-                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
                 </button>
             </article>
             <article class="details-card">
@@ -66,7 +66,9 @@
                     </ul>
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#music" aria-expanded="false" aria-controls="music">
-                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
                 </button>
             </article>
             <article class="details-card">
@@ -75,7 +77,9 @@
                     Fútbol de vez en cuando y gimnasio un par de veces a la semana
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#exercise" aria-expanded="false" aria-controls="exercise">
-                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
                 </button>
             </article>
             <article class="details-card">
@@ -88,7 +92,9 @@
                     </ul>
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#other" aria-expanded="false" aria-controls="other">
-                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
                 </button>
             </article>
         </div>

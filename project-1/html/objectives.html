@@ -6,9 +6,46 @@
     <!--#include virtual="/header.html" -->
     <main>
         <h1>Mis objetivos</h1>
-        <section>
-            <p>Bienvenido a mi sitio web estáticooooooooooooooooooooooooooooooo</p>
-        </section>
+        <div class="details-container">
+            <article class="details-card">
+                <h2>Profesionales</h2>
+                <div class="collapse" id="professional">
+                    A corto y largo plazo mis objetivos son
+                    <ul>
+                        <li>Graduarme del bachillerato</li>
+                        <li>Trabajar por un tiempo</li>
+                        <li>Sacar una maestría</li>
+                        <li>Aprender sobre computación cuántica</li>
+                        <li>Aprender sobre redes, servicios y servidores</li>
+                        <li>Aprender aprender sobre gráficos de computadora</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#professional" aria-expanded="false" aria-controls="profesional">
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Personales</h2>
+                <div class="collapse" id="personal">
+                    A corto y largo plazo mis objetivos son
+                    <ul>
+                        <li>Viajar bastante</li>
+                        <li>Disfrutar con mis amigos</li>
+                        <li>Mantenerme sano</li>
+                        <li>Aprender a manejar</li>
+                        <li>Tener casa propia</li>
+                        <li>Tener carro propio</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#personal" aria-expanded="false" aria-controls="personal">
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
+                </button>
+            </article>
+        </div>
     </main>
     <!--#include virtual="/footer.html" -->
 </body>
