@@ -36,6 +36,12 @@ h2 {
     text-align: center;
 }
 
+section {
+    @extend .container-style;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
 .nav-style {
     background-color: $nav-background;
     color: $nav-text-color;
@@ -70,10 +76,6 @@ h2 {
     @extend .nav-style;
     @extend .list-unstyled;
     @extend .m-0;
-}
-
-.width-transition {
-    transition: width $transition-speed ease;
 }
 
 .nav-item {
@@ -113,6 +115,11 @@ h2 {
     transform: rotate(0deg);
 }
 
+.container-style {
+    background-color: rgb(39, 39, 39);
+    border: 1px solid gray;
+}
+
 .details-container {
     @extend .row;
     @extend .justify-content-center;
@@ -125,8 +132,7 @@ h2 {
 
 .details-card {
     @extend .grid-md-2;
-    background-color: rgb(39, 39, 39);
-    border: 1px solid gray;
+    @extend .container-style;
     padding: 0;
     margin: 0.5rem;
     max-width: 40rem;
