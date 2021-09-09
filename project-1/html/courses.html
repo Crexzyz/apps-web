@@ -6,9 +6,72 @@
     <!--#include virtual="/header.html" -->
     <main>
         <h1>Cursos preferidos</h1>
-        <section>
-            <h3>Pendiente</h3>
-        </section>
+        <div class="details-container">
+            <article class="details-card">
+                <h2>Bloque de Redes y Sistemas Operativos</h2>
+                <div class="collapse" id="network">
+                    Algunas razones son:
+                    <ul>
+                        <li>Son dos de los temas que más me llaman la atención de la carrera</li>
+                        <li>Aprendí un montón en los 3 cursos</li>
+                        <li>Gracias al proyecto conocí dónde quería trabajar</li>
+                        <li>La experiencia con los profes y compañeros fue la mejor</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#network" aria-expanded="false" aria-controls="network">
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Computación y Sociedad</h2>
+                <div class="collapse" id="society">
+                    Algunas razones son:
+                    <ul>
+                        <li>No es un curso técnico, pero muy interesante</li>
+                        <li>Nos hace ver que no todo es programar y programar</li>
+                        <li>Nos prepara para dar último paso antes de salir al mundo laboral</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#society" aria-expanded="false" aria-controls="society">
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Desempeño y Experimentación / Diseño de Experimentos</h2>
+                <div class="collapse" id="experiments">
+                    Algunas razones son:
+                    <ul>
+                        <li>Fue donde le encontré el sentido a la estadística</li>
+                        <li>El curso se presta para hacer proyectos muy interesantes</li>
+                        <li>Uno aprende bastante sobre comunicación científica</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#experiments" aria-expanded="false" aria-controls="experiments">
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Menciones honoríficas</h2>
+                <div class="collapse" id="honor">
+                    <ul>
+                        <li>Programación Paralela: no podemos depender de aplicaciones de un solo hilo</li>
+                        <li>PI de Inge-Bases: da una perspectiva cercana a la realidad de cómo es trabajar en desarrollo de software</li>
+                        <li>Seguridad: uno se da cuenta de todas las facilidades de protección que dan los frameworks web</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#honor" aria-expanded="false" aria-controls="honor">
+                    <svg class="nav-svg">
+                        <!--#include virtual="svg/caret-down.svg" -->
+                    </svg>
+                </button>
+            </article>
+        </div>
     </main>
     <!--#include virtual="/footer.html" -->
 </body>
