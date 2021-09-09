@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--#include virtual="/head.html" -->
+        <title>Inicio</title>
+    </head>
+<body>
+    <svg class="d-none">
+        <symbol id="caret-down" viewBox="0 0 16 16">
+            <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+        </symbol>
+    </svg>
+    <!--#include virtual="/header.html" -->
+    <main>
+        <h1>Mis pasatiempos</h1>
+        <div class="details-container">
+            <article class="details-card">
+                <h2>Videojuegos</h2>
+                <div class="collapse" id="games">
+                    Entre mis juegos favoritos están:
+                    <ul>
+                        <li>The Last Of Us</li>
+                        <li>Days Gone</li>
+                        <li>Minecraft</li>
+                        <li>Hollow Knight</li>
+                    </ul>
+                    Los que más juego actualmente son:
+                    <ul>
+                        <li>FIFA 21</li>
+                        <li>Rocket League</li>
+                        <li>Rogue Company</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#games" aria-expanded="false" aria-controls="games">
+                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Series y películas</h2>
+                <div class="collapse" id="movies">
+                    Algunas activas que veo son
+                    <ul>
+                        <li>Ted Lasso</li>
+                        <li>Cobra Kai</li>
+                        <li>Shingeki no Kyojin</li>
+                        <li>La Casa de Papel</li>
+                    </ul>
+                    Películas: la mayoría de Marvel
+                    <br>
+                    Y mucho YouTube variado
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#movies" aria-expanded="false" aria-controls="movies">
+                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Música</h2>
+                <div class="collapse" id="music">
+                    Tengo música puesta casi todo el día, escucho de todo, en general:
+                    <ul>
+                        <li>Rock</li>
+                        <li>Electrónica</li>
+                        <li>Reggaeton</li>
+                        <li>Soundtracks de juegos</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#music" aria-expanded="false" aria-controls="music">
+                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Ejercicio</h2>
+                <div class="collapse" id="exercise">
+                    Fútbol de vez en cuando y gimnasio un par de veces a la semana
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#exercise" aria-expanded="false" aria-controls="exercise">
+                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                </button>
+            </article>
+            <article class="details-card">
+                <h2>Otros</h2>
+                <div class="collapse" id="other">
+                    <ul>
+                        <li>Programar algo</li>
+                        <li>Leer noticias o artículos relacionados a la carrera</li>
+                        <li>Dormir jejeps</li>
+                    </ul>
+                </div>
+                <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#other" aria-expanded="false" aria-controls="other">
+                    <svg class="bi" fill="currentColor" width="16" height="16"><use xlink:href="#caret-down"/></svg>
+                </button>
+            </article>
+        </div>
+        
+    </main>
+    <!--#include virtual="/footer.html" -->
+</body>
+</html>

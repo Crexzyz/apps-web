@@ -108,3 +108,5 @@ package.json
 package-lock.json
 css-build
 
+# Images
+*.png

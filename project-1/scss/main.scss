@@ -5,6 +5,37 @@ $nav-background-hover: rgb(0, 114, 0);
 $nav-text-color: white;
 $transition-speed: 0.5s;
 
+body {
+    @extend body;
+    background: radial-gradient(circle, rgba(52,52,52,1) 0%, rgba(25,25,25,1) 100%);
+    color: white;
+}
+
+footer {
+    @extend .nav-style;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+main {
+    @extend .container;
+}
+
+h1 {
+    background-color: rgb(39, 39, 39);
+    border: 1px solid gray;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+h2 {
+    padding: 1px;
+    text-align: center;
+}
+
 .nav-style {
     background-color: $nav-background;
     color: $nav-text-color;
@@ -49,20 +80,14 @@ $transition-speed: 0.5s;
     @extend .nav-style;
     @extend .nav-link;
     width: 100%;
-    text-align: left;
+    text-align: center;
+    border: 1px solid transparent;
 }
 
 .nav-item:hover, .nav-item:active, .nav-item:focus {
     background-color: $nav-background-hover;
     color: $nav-text-color;
     @extend .nav-link;
-}
-
-footer {
-    @extend .nav-style;
-    text-align: center;
-    width: 100%;
-    bottom: 0;
 }
 
 .collapse-button svg {
@@ -72,4 +97,42 @@ footer {
 .collapse-button:hover svg {
     transform: rotate(90deg);
     transition: $transition-speed;
+}
+
+.details-button {
+    @extend .nav-item;
+}
+
+.details-button svg {
+    transition: $transition-speed;
+    transform: rotate(180deg);
+}
+
+.details-button.collapsed svg {
+    transition: $transition-speed;
+    transform: rotate(0deg);
+}
+
+.details-container {
+    @extend .row;
+    @extend .justify-content-center;
+}
+
+.grid-md-2 {
+    @extend .col-12;
+    @extend .col-md-6;
+}
+
+.details-card {
+    @extend .grid-md-2;
+    background-color: rgb(39, 39, 39);
+    border: 1px solid gray;
+    padding: 0;
+    margin: 0.5rem;
+    max-width: 40rem;
+    height: fit-content;
+}
+
+.details-card div {
+    padding: 1rem;
 }
