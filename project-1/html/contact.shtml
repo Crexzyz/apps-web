@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Contácteme" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Contacto</h1>
         <div class="details-container">
             <article class="details-card">
                 <h2>
                     <svg viewBox="0 0 16 16" class="h2-svg">
-                        <!--#include virtual="svg/mail.svg" -->
+                        <!--#include file="svg/mail.svg" -->
                     </svg>
                     Correo UCR
                 </h2>
@@ -19,7 +19,7 @@
             <article class="details-card">
                 <h2>
                     <svg viewBox="0 0 16 16" class="h2-svg">
-                        <!--#include virtual="svg/linkedin.svg" -->
+                        <!--#include file="svg/linkedin.svg" -->
                     </svg>
                     LinkedIn
                 </h2>
@@ -28,7 +28,7 @@
             <article class="details-card">
                 <h2>
                     <svg viewBox="0 0 16 16" class="h2-svg">
-                        <!--#include virtual="svg/github.svg" -->
+                        <!--#include file="svg/github.svg" -->
                     </svg>
                     Github
                 </h2>
@@ -36,6 +36,6 @@
             </article>
         </section>
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>

@@ -2,23 +2,23 @@
     <nav class="navbar-top">
         <button class="nav-collapser" type="button" data-bs-toggle="collapse" data-bs-target="#nav-collapse" aria-controls="nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
             <svg viewBox="0 0 16 16">
-                <!--#include virtual="svg/lines.svg" -->
+                <!--#include file="svg/lines.svg" -->
             </svg>
             Menu
         </button>
         <ul class="nav-list collapse" id="nav-collapse">
             <li>
-                <a class="nav-item" href="/">
+                <a class="nav-item" href="index.shtml">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/home.svg" -->
+                        <!--#include file="svg/home.svg" -->
                     </svg>
                     Inicio
                 </a>
             </li>
             <li>
-                <a class="nav-item" href="objectives.html">
+                <a class="nav-item" href="objectives.shtml">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/target.svg" -->
+                        <!--#include file="svg/target.svg" -->
                     </svg>
                     Mis objetivos
                 </a>
@@ -26,39 +26,39 @@
             <li>
                 <button class="collapse-button nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#nav-list-collapse" aria-expanded="false" aria-controls="nav-list-collapse">
                     <svg class="nav-svg hover-rotate">
-                        <!--#include virtual="svg/caret-right.svg" -->                        
+                        <!--#include file="svg/caret-right.svg" -->                        
                     </svg>
                     Computación
                 </button>
                 <ul class="collapse sublist-style" id="nav-list-collapse">
                     <li>
-                        <a class="nav-item" href="why.html">
+                        <a class="nav-item" href="why.shtml">
                             <svg class="nav-svg">
-                                <!--#include virtual="svg/question-circle.svg" -->
+                                <!--#include file="svg/question-circle.svg" -->
                             </svg>
                             ¿Por qué computación?
                         </a>
                     </li>
                     <li>
-                        <a class="nav-item" href="courses.html">
+                        <a class="nav-item" href="courses.shtml">
                             <svg class="nav-svg">
-                                <!--#include virtual="svg/star.svg" -->
+                                <!--#include file="svg/star.svg" -->
                             </svg>
                             Cursos preferidos
                         </a>
                     </li>
                     <li>
-                        <a class="nav-item" href="teachers.html">
+                        <a class="nav-item" href="teachers.shtml">
                             <svg class="nav-svg">
-                                <!--#include virtual="svg/person.svg" -->
+                                <!--#include file="svg/person.svg" -->
                             </svg>
                             Mis profesores y compañeros
                         </a>
                     </li>
                     <li>
-                        <a class="nav-item" href="downloads.html">
+                        <a class="nav-item" href="downloads.shtml">
                             <svg class="nav-svg">
-                                <!--#include virtual="svg/download.svg" -->
+                                <!--#include file="svg/download.svg" -->
                             </svg>
                             Descargas
                         </a>
@@ -66,25 +66,25 @@
                 </ul>
             </li>
             <li>
-                <a class="nav-item" href="hobbies.html">
+                <a class="nav-item" href="hobbies.shtml">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/joystick.svg" -->
+                        <!--#include file="svg/joystick.svg" -->
                     </svg>
                     Pasatiempos
                 </a>
             </li>
             <li>
-                <a class="nav-item" href="about.html">
+                <a class="nav-item" href="about.shtml">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/info.svg" -->
+                        <!--#include file="svg/info.svg" -->
                     </svg>
                     Acerca de este sitio
                 </a>
             </li>
             <li>
-                <a class="nav-item" href="contact.html">
+                <a class="nav-item" href="contact.shtml">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/mail.svg" -->
+                        <!--#include file="svg/mail.svg" -->
                     </svg>
                     Contacto
                 </a>

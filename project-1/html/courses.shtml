@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Cursos preferidos" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Cursos preferidos</h1>
         <div class="details-container">
@@ -20,7 +20,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#network" aria-expanded="false" aria-controls="network">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -36,7 +36,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#society" aria-expanded="false" aria-controls="society">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -52,7 +52,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#experiments" aria-expanded="false" aria-controls="experiments">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -67,12 +67,12 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#honor" aria-expanded="false" aria-controls="honor">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
         </div>
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>

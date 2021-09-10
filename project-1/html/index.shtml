@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Inicio" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Inicio</h1>
         <section>
@@ -14,6 +14,6 @@
             un estilo minimalista por gusto personal de este tipo de diseños
         </section>
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>

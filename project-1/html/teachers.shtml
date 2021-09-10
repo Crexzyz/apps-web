@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Profesores y compañeros" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Profesores y compañeros</h1>
         <section>
@@ -22,6 +22,6 @@
             </ul>
         </section>
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>

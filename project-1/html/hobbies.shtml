@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Pasatiempos" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Mis pasatiempos</h1>
         <div class="details-container">
@@ -27,7 +27,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#games" aria-expanded="false" aria-controls="games">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -49,7 +49,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#movies" aria-expanded="false" aria-controls="movies">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -67,7 +67,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#music" aria-expanded="false" aria-controls="music">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -78,7 +78,7 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#exercise" aria-expanded="false" aria-controls="exercise">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
@@ -93,13 +93,13 @@
                 </div>
                 <button class="details-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#other" aria-expanded="false" aria-controls="other">
                     <svg class="nav-svg">
-                        <!--#include virtual="svg/caret-down.svg" -->
+                        <!--#include file="svg/caret-down.svg" -->
                     </svg>
                 </button>
             </article>
         </div>
         
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>

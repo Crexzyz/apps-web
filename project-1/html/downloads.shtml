@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Descargas" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Descargas</h1>
         <div class="details-container">
@@ -23,6 +23,6 @@
             </article>
         </div>
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>

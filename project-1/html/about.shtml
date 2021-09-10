@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <!--#set var="title" value="Acerca de este sitio" -->
-<!--#include virtual="/head.html" -->
+<!--#include file="head.shtml" -->
 <body>
-    <!--#include virtual="/header.html" -->
+    <!--#include file="header.shtml" -->
     <main>
         <h1>Acerca de este sitio</h1>
         <section class="details-container">
             <svg class="main-svg" viewBox="0 0 16 16">
-                <!--#include virtual="svg/person.svg" -->
+                <!--#include file="svg/person.svg" -->
             </svg>
             <hr>
             <h2>
@@ -17,7 +17,7 @@
         </section>
         <section class="details-container">
             <svg class="main-svg" viewBox="0 0 16 16">
-                <!--#include virtual="svg/book.svg" -->            
+                <!--#include file="svg/book.svg" -->            
             </svg>
             <hr>
             <h2>
@@ -27,7 +27,7 @@
         </section>
         <section class="details-container">
             <svg class="main-svg" viewBox="0 0 16 16">
-                <!--#include virtual="svg/bootstrap.svg" -->            
+                <!--#include file="svg/bootstrap.svg" -->            
             </svg>
             <hr>
             <h2>
@@ -35,6 +35,6 @@
             </h2>
         </section>
     </main>
-    <!--#include virtual="/footer.html" -->
+    <!--#include file="footer.shtml" -->
 </body>
 </html>
