@@ -34,7 +34,7 @@
                 </h2>
                 <a class="nav-item" target="_blank" href="https://github.com/Crexzyz">Ir al perfil de Github</a>
             </article>
-        </section>
+        </div>
     </main>
     <!--#include file="footer.shtml" -->
 </body>
