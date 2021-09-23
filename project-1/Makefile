@@ -10,6 +10,7 @@ all: compile_css install
 
 install:
 	cp $(wildcard $(COMPILED_CSS_FOLDER)/*.css) $(APACHE_PATH)
+	cp $(wildcard $(COMPILED_CSS_FOLDER)/*.css.map) $(APACHE_PATH)
 	cp -r $(wildcard $(HTML_FOLDER)/*) $(APACHE_PATH)
 
 compile_css: $(COMPILED_CSS_FOLDER) $(CSS_FILES)

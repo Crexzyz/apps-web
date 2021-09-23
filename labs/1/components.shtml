@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<!--#set var="title" value="Laboratorios" -->
+<!--#include virtual="/head.shtml" -->
+<body>
+    <!--#include virtual="/labs/header.shtml" -->
+    <main>
+        <h1>Componentes: &lt;hola-mundo&gt;</h1>
+        <section>
+        </section>
+    </main>
+    <!--#include virtual="/labs/footer.shtml" -->
+</body>
+</html>

@@ -1,0 +1,38 @@
+<header>
+    <nav class="navbar-top">
+        <button class="nav-collapser" type="button" data-bs-toggle="collapse" data-bs-target="#nav-collapse" aria-controls="nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <svg viewBox="0 0 16 16">
+                <!--#include virtual="../svg/lines.svg" -->
+            </svg>
+            Menu
+        </button>
+        <ul class="nav-list collapse" id="nav-collapse">
+            <li>
+                <button class="collapse-button nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#nav-list-collapse" aria-expanded="false" aria-controls="nav-list-collapse">
+                    <svg class="nav-svg hover-rotate">
+                        <!--#include virtual="../svg/caret-right.svg" -->                        
+                    </svg>
+                    Lab 1
+                </button>
+                <ul class="collapse sublist-style" id="nav-list-collapse">
+                    <li>
+                        <a class="nav-item" href="/labs/1/countchars.shtml">
+                            <svg class="nav-svg">
+                                <!--#include virtual="../svg/info.svg" -->
+                            </svg>
+                            Eventos y funciones
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="/labs/1/components.shtml">
+                            <svg class="nav-svg">
+                                <!--#include virtual="../svg/info.svg" -->
+                            </svg>
+                            Componentes web
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>

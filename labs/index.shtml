@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<!--#set var="title" value="Laboratorios" -->
+<!--#include virtual="/head.shtml" -->
+<body>
+    <!--#include file="header.shtml" -->
+    <main>
+        <h1>Laboratorios</h1>
+    </main>
+    <!--#include file="footer.shtml" -->
+</body>
+</html>

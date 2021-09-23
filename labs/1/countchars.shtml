@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<!--#set var="title" value="Laboratorios" -->
+<!--#include virtual="/head.shtml" -->
+<script src="countchars.js"></script>
+<body>
+    <!--#include virtual="/labs/header.shtml" -->
+    <main>
+        <h1>Eventos y funciones: contador de caracteres</h1>
+        <section>
+            <p>Comentarios adicionales</p>
+            <textarea class="flex-fill" oninput="verify(this, 300, document.getElementById('count-text'))"></textarea>
+            <p id="max-text">(Caracteres máximos: 300)</p>
+            <p id="count-text">Usted tiene un espacio de 300 caracteres restantes</p>
+        </section>
+    </main>
+    <!--#include virtual="/labs/footer.shtml" -->
+</body>
+</html>
