@@ -7,7 +7,7 @@ function verify(control, max, progressText) {
     control.style.height = Math.min(control.scrollHeight, minHeight) + "px";
 
     if(charsLeft <= 0) {
-        let trimmedText = control.value.substring(0, 300);
+        let trimmedText = control.value.substring(0, max);
         control.value = trimmedText;
         charsLeft = 0;
     }

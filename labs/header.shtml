@@ -8,13 +8,21 @@
         </button>
         <ul class="nav-list collapse" id="nav-collapse">
             <li>
-                <button class="collapse-button nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#nav-list-collapse" aria-expanded="false" aria-controls="nav-list-collapse">
+                <a class="nav-item" href="/labs">
+                    <svg class="nav-svg">
+                        <!--#include virtual="../svg/home.svg" -->
+                    </svg>
+                    Inicio
+                </a>
+            </li>
+            <li>
+                <button class="collapse-button nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#javascript" aria-expanded="false" aria-controls="javascript">
                     <svg class="nav-svg hover-rotate">
                         <!--#include virtual="../svg/caret-right.svg" -->                        
                     </svg>
-                    Lab 1
+                    Javascript
                 </button>
-                <ul class="collapse sublist-style" id="nav-list-collapse">
+                <ul class="collapse sublist-style" id="javascript">
                     <li>
                         <a class="nav-item" href="/labs/1/countchars.shtml">
                             <svg class="nav-svg">
@@ -29,6 +37,14 @@
                                 <!--#include virtual="../svg/info.svg" -->
                             </svg>
                             Componentes web
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="/labs/2/provincesajaj.shtml">
+                            <svg class="nav-svg">
+                                <!--#include virtual="../svg/info.svg" -->
+                            </svg>
+                            AJAJ
                         </a>
                     </li>
                 </ul>

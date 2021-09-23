@@ -2,11 +2,16 @@
 <html>
 <!--#set var="title" value="Laboratorios" -->
 <!--#include virtual="/head.shtml" -->
+<script src="helloworld.js"></script>
 <body>
     <!--#include virtual="/labs/header.shtml" -->
     <main>
         <h1>Componentes: &lt;hola-mundo&gt;</h1>
         <section>
+            <hola-mundo>Sustituir</hola-mundo>
+            <hola-mundo>Sustituir</hola-mundo>
+            <hola-mundo>Sustituir</hola-mundo>
+            <hola-mundo>Sustituir</hola-mundo>
         </section>
     </main>
     <!--#include virtual="/labs/footer.shtml" -->

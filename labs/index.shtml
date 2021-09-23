@@ -6,6 +6,13 @@
     <!--#include file="header.shtml" -->
     <main>
         <h1>Laboratorios</h1>
+        <section>
+            <h3>Javascript</h3>
+            <a class="nav-item" target="_blank" href="/labs/1/countchars.shtml">Eventos y funciones: contador de caracteres</a>
+            <a class="nav-item" target="_blank" href="/labs/1/components.shtml">Componentes: &lt;hola-mundo&gt;</a>
+            <h3>Javascript: AJAJ</h3>
+            <a class="nav-item" target="_blank" href="/labs/2/ajajprovinces.shtml">AJAJ: Provincias</a>
+        </section>
     </main>
     <!--#include file="footer.shtml" -->
 </body>
