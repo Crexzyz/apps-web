@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-item" href="/labs/2/provincesajaj.shtml">
+                        <a class="nav-item" href="/labs/2/provinces.shtml">
                             <svg class="nav-svg">
                                 <!--#include virtual="../svg/info.svg" -->
                             </svg>
