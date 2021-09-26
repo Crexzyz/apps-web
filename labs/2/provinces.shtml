@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<!--#set var="title" value="Laboratorios" -->
+<!--#include virtual="/head.shtml" -->
+<body>
+    <!--#include virtual="/labs/header.shtml" -->
+    <main>
+        <h1>AJAJ: Provincias</h1>
+        <section id="app">
+            <label for="provinces">
+                Provincia:
+            </label>
+            <select name="provinces" id="provinces">
+                <option v-for="province in provinces" :value="province" :key="province">
+                    {{province}}
+                </option>
+            </select>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="provinces.js"></script>
+    <!--#include virtual="/labs/footer.shtml" -->
+</body>
+</html>
