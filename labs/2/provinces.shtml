@@ -10,9 +10,28 @@
             <label for="provinces">
                 Provincia:
             </label>
-            <select name="provinces" id="provinces">
+            <select v-model="selectedProvince" name="provinces" id="provinces" @change="getCantons()">
+                <option value=""></option>
                 <option v-for="province in provinces" :value="province" :key="province">
                     {{province}}
+                </option>
+            </select>
+            <br>
+            <label for="cantons">
+                Cantón:
+            </label>
+            <select name="cantons" id="cantons" @change="getDistricts($event)">
+                <option v-for="canton in cantons" :value="canton" :key="canton">
+                    {{canton}}
+                </option>
+            </select>
+            <br>
+            <label for="districts">
+                Distritos:
+            </label>
+            <select name="districts" id="districts">
+                <option v-for="district in districts" :value="district" :key="district">
+                    {{district}}
                 </option>
             </select>
         </section>

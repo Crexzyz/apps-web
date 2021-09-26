@@ -1,7 +1,10 @@
 var app = new Vue({
     el: '#app',
     data: {
-        provinces: []
+        provinces: [],
+        selectedProvince: null,
+        cantons: [],
+        districts: []
     },
     methods: {
         getProvinces: function() {
@@ -9,12 +12,19 @@ var app = new Vue({
                 .then( response => response.json())
                 .then( json => {this.provinces = json})
         },
-        getCantons: function(province) {
-            console.log(province);
+        getCantons: function() {
+            fetch('data.php', {method: 'POST', body: JSON.stringify({type: "canton", province: this.selectedProvince})})
+                .then( response => response.json())
+                .then( json => {this.cantons = json});
+
+            this.districts = [];
+
         },
-        getDistricts: function(province, canton) {
-            console.log(province);
-            console.log(canton);
+        getDistricts: function(cantonOption) {
+            selectedCanton = cantonOption.target.value;
+            fetch('data.php', {method: 'POST', body: JSON.stringify({type: "district", province: this.selectedProvince, canton: selectedCanton})})
+                .then( response => response.json())
+                .then( json => {this.districts = json})
         }
     },
     mounted: function () {

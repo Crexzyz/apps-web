@@ -1,5 +1,5 @@
 <?php
-$provincias = array(
+$data = array(
   "title" => "Costa Rica",
   "provincias" => array(
     array(
