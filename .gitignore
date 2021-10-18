@@ -110,3 +110,7 @@ css-build
 
 # Images
 *.png
+
+# Composer
+vendor/
+
