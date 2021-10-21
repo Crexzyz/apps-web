@@ -15,53 +15,55 @@
         <?php if(!empty($message)) { echo "<section>$message</section>"; } ?>
         <section>
             <p><a href="<?php echo $_SERVER['PHP_SELF']; ?>?action=fill">Agregar nuevo contacto</a></p>
-            <table class="table table-dark">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Teléfono de la casa</th>
-                        <th scope="col">Dirección de la casa</th>
-                        <th scope="col">Teléfono del trabajo</th>
-                        <th scope="col">Dirección del trabajo</th>
-                        <th scope="col">Correo electrónico</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                foreach($addresses as $address)
-                {
-                ?>
-                    <tr>
-                        <td scope="row"><?php echo $address->name; ?></td>
-                        <td><?php echo $address->last_name; ?></td>
-                        <td><?php echo $address->home_number; ?></td>
-                        <td><?php echo $address->home_address; ?></td>
-                        <td><?php echo $address->work_number; ?></td>
-                        <td><?php echo $address->work_address; ?></td>
-                        <td>
-                            <a class="nav-item" href="mailto:<?php echo $address->email; ?>">
-                                <?php echo $address->email; ?>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="nav-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?action=fill&id=<?php echo $address->id; ?>">
-                                Editar
-                            </a>
-                        </td>
-                        <td>
-                            <a class="nav-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?action=delete&id=<?php echo $address->id; ?>">
-                                Borrar
-                            </a>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Teléfono de la casa</th>
+                            <th scope="col">Dirección de la casa</th>
+                            <th scope="col">Teléfono del trabajo</th>
+                            <th scope="col">Dirección del trabajo</th>
+                            <th scope="col">Correo electrónico</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach($addresses as $address)
+                    {
+                    ?>
+                        <tr>
+                            <td scope="row"><?php echo $address->name; ?></td>
+                            <td><?php echo $address->last_name; ?></td>
+                            <td><?php echo $address->home_number; ?></td>
+                            <td><?php echo $address->home_address; ?></td>
+                            <td><?php echo $address->work_number; ?></td>
+                            <td><?php echo $address->work_address; ?></td>
+                            <td>
+                                <a class="nav-item" href="mailto:<?php echo $address->email; ?>">
+                                    <?php echo $address->email; ?>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="nav-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?action=fill&id=<?php echo $address->id; ?>">
+                                    Editar
+                                </a>
+                            </td>
+                            <td>
+                                <a class="nav-item" href="<?php echo $_SERVER['PHP_SELF']; ?>?action=delete&id=<?php echo $address->id; ?>">
+                                    Borrar
+                                </a>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
             <p><a href="<?php echo $_SERVER['PHP_SELF']; ?>?action=fill">Agregar nuevo contacto</a></p>
         </section>
     </main>

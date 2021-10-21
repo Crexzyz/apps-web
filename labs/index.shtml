@@ -7,6 +7,8 @@
     <main>
         <h1>Laboratorios</h1>
         <section>
+            <h3>PHP</h3>
+            <a class="nav-item" target="_blank" href="/labs/3/index.php">Base de datos de direcciones</a>
             <h3>Javascript: AJAJ</h3>
             <a class="nav-item" target="_blank" href="/labs/2/provinces.shtml">AJAJ: Provincias</a>
             <h3>Javascript</h3>
