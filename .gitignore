@@ -114,3 +114,5 @@ css-build
 # Composer
 vendor/
 
+# PHP
+app.ini.php

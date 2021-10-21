@@ -49,6 +49,24 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <button class="collapse-button nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#php" aria-expanded="false" aria-controls="php">
+                    <svg class="nav-svg hover-rotate">
+                        <!--#include virtual="../svg/caret-right.svg" -->                        
+                    </svg>
+                    PHP
+                </button>
+                <ul class="collapse sublist-style" id="php">
+                    <li>
+                        <a class="nav-item" href="/labs/3/index.php">
+                            <svg class="nav-svg">
+                                <!--#include virtual="../svg/info.svg" -->
+                            </svg>
+                            Base de datos de contactos
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </header>

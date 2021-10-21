@@ -2,86 +2,81 @@
 
 class AddressesController extends Controller
 {
-    private $db = null;
-    private $notebook = null;
+    private $messages = array(
+        'EDIT_OK' => 'Dirección modificada con éxito',
+        'EDIT_ERR' => 'Su dirección no se pudo modificar',
+        'NEW_OK' => 'Dirección agregada con éxito',
+        'NEW_ERR' => 'Su dirección no se pudo guardar',
+        'DELETE_OK' => 'Dirección eliminada con éxito',
+        'DELETE_ERR' => 'Su dirección no se pudo eliminar',
+    );
 
-    function __construct(IGenericRepository $db)
+    function __construct()
     {
-        $this->db = $db;
-        $this->notebook = new AddressNotebookModel($this->db);
+        $this->notebook = new ContactNotebookModel();
         parent::__construct();
     }
 
     function index()
     {
         $this->view->assign('addresses', $this->notebook->readAll());
+        if(isset($_GET['status']))
+        {
+            $this->view->assign('message', $this->messages[$_GET['status']]);
+        }
     }
     
     function fill()
     {
+        $messageKey = 'message';
+        $actionKey = 'action';
+        $contactKey = 'contact';
+
         if(!isset($_GET['id']))
         {
-            $this->view->assign('message', 'Cree una nueva entrada en el libro de direcciones');
-            $this->view->assign('action', 'create');
-            $this->view->assign('address', new AddressModel());
+            $this->view->assign($messageKey, 'Cree una nueva entrada en el libro de direcciones');
+            $this->view->assign($actionKey, 'create');
+            $this->view->assign($contactKey, new ContactModel(false));
         }
         else
         {
-            $this->view->assign('message', 'Modifique la siguiente entrada en el libro de direcciones');
-            $this->view->assign('action', 'edit');
+            $this->view->assign($messageKey, 'Modifique la siguiente entrada en el libro de direcciones');
+            $this->view->assign($actionKey, 'edit');
 
-            $address = $this->notebook->read($_GET['id']);
-            $this->view->assign('address', $address);
+            $contact = $this->notebook->read($_GET['id']);
+            $this->view->assign($contactKey, $contact);
         }
     }
     
     function create()
     {
-        $newAddress = new AddressModel();
+        $contact = new ContactModel(true);
 
-        $newAddress->setData(strval($this->notebook->getMaxId() + 1), $_POST['name'], $_POST['last-name'],
-                             $_POST['home-number'], $_POST['home-address'], $_POST['work-number'],
-                             $_POST['work-address'], $_POST['email']);
-        
-        if($this->notebook->create($newAddress))
-		{
-			$this->view->assign('message', 'Dirección agregada con éxito');
-		}
-		else
-		{
-			$this->view->assign('message', 'Su dirección no se pudo guardar');
-		}
+        $contact->setData($_POST['name'], $_POST['last-name'], $_POST['home-number'],
+                          $_POST['home-address'], $_POST['work-number'], $_POST['work-address'],
+                          $_POST['email']);
+        $result = $contact->save();
+        $code = $result === 0 ? 'NEW_ERR' : 'NEW_OK';
+        header('Location: '. $_SERVER['PHP_SELF'] . "?status=$code"); die;
     }
 
     function edit()
     {
-        $newAddress = new AddressModel();
-
-        $newAddress->setData($_POST['id'], $_POST['name'], $_POST['last-name'],
-                             $_POST['home-number'], $_POST['home-address'], $_POST['work-number'],
-                             $_POST['work-address'], $_POST['email']);
+        $contact = $this->notebook->read($_POST['id']);
+        print_r($contact);
+        $contact->setData($_POST['name'], $_POST['last-name'], $_POST['home-number'],
+                          $_POST['home-address'], $_POST['work-number'], $_POST['work-address'],
+                          $_POST['email']);
         
-        if($this->notebook->edit($newAddress))
-		{
-			$this->view->assign('message', 'Dirección modificada con éxito');
-		}
-		else
-		{
-			$this->view->assign('message', 'Su dirección no se pudo modificar');
-		}
+        $result = $contact->save();
+        $code = $result === 0 ? 'EDIT_ERR' : 'EDIT_OK';
+        header('Location: '. $_SERVER['PHP_SELF'] . "?status=$code"); die;
     }
 
     function delete()
     {
-        $address = $this->notebook->read($_GET['id']);
-        
-        if($this->notebook->delete($address))
-		{
-			$this->view->assign('message', 'Dirección eliminada con éxito');
-		}
-		else
-		{
-			$this->view->assign('message', 'Su dirección no se pudo eliminar');
-		}
+        $result = $this->notebook->delete($_GET['id']);
+        $code = $result === 0 ? 'DELETE_ERR' : 'DELETE_OK';
+        header('Location: '. $_SERVER['PHP_SELF'] . "?status=$code"); die;
     }
 }
