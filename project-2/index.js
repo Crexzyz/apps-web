@@ -10,7 +10,11 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 
 require("dotenv").config();
-const authRouter = require("./auth");
+
+const indexRouter = require("./routes/index");
+const authRouter = require("./routes/Auth");
+const userRouter = require("./routes/User");
+const postRouter = require("./routes/Post");
 
 const db = require('./models/index.js');
 
@@ -48,14 +52,6 @@ const strategy = new Auth0Strategy(
       callbackURL: process.env.AUTH0_CALLBACK_URL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
-      /**
-       * Access tokens are used to authorize users to an API
-       * (resource server)
-       * accessToken is the token to call the Auth0 API
-       * or a secured third-party API
-       * extraParams.id_token has the JSON Web Token
-       * profile has all the information from the user
-       */
       return done(null, profile);
     }
 );
@@ -63,58 +59,34 @@ const strategy = new Auth0Strategy(
 /**
  *  App Configuration
  */
+app.use(express.urlencoded({extended: true}))
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(expressSession(session));
+
 passport.use(strategy);
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-    done(null, user);
-});  
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
+passport.serializeUser((user, done) => {done(null, user);});  
+passport.deserializeUser((user, done) => {done(null, user);});
 
 // Creating custom middleware with Express
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
-  });
+});
 
 // Router mounting
+app.use("/", indexRouter);
 app.use("/", authRouter);
+app.use("/user", userRouter);
+app.use("/posts", postRouter);
 
-/**
- * Routes Definitions
- */
-
-const secured = (req, res, next) => {
-    if (req.user) {
-      return next();
-    }
-    req.session.returnTo = req.originalUrl;
-    res.redirect("/login");
-};
-
-app.get("/", (req, res) => {
-    res.render("index", { title: "Home" });
-});
-
-app.get("/user", secured, (req, res, next) => {
-    const { _raw, _json, ...userProfile } = req.user;
-    res.render("user", {
-      title: "Profile",
-      userProfile: userProfile
-    });
-});
-
-/**
- * Server Activation
- */
+// Server Activation
 app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
 });

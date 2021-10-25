@@ -52,17 +52,17 @@ sequelize
     console.error('Unable to connect to the database:', err);
 });
   
-sequelize.sync({ force: true })
-  .then(() => {
-    db.Category.bulkCreate([
-      {name: 'PHP'},
-      {name: 'JavaScript'},
-      {name: 'C#'},
-    ]);
-    db.Role.bulkCreate([
-      {name: 'Admin'},
-      {name: 'User'}
-    ])
-});
+// sequelize.sync({ force: true })
+//   .then(() => {
+//     db.Category.bulkCreate([
+//       {name: 'PHP'},
+//       {name: 'JavaScript'},
+//       {name: 'C#'},
+//     ]);
+//     db.Role.bulkCreate([
+//       {name: 'Admin'},
+//       {name: 'User'}
+//     ])
+// });
 
 module.exports = db;

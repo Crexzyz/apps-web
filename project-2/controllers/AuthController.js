@@ -1,31 +1,17 @@
 "use strict";
 
-/**
- * Required External Modules
- */
-
-const express = require("express");
-const router = express.Router();
 const passport = require("passport");
 const querystring = require("querystring");
- 
+const User = require('../models/index.js').User;
+
 require("dotenv").config();
 
-/**
- * Routes Definitions
- */
+exports.login = (req, res) => {
+    // passport.authenticate("auth0", {scope: "openid email profile"});
+    res.redirect("/");
+}
 
-router.get(
-    "/login",
-    passport.authenticate("auth0", {
-      scope: "openid email profile"
-    }),
-    (req, res) => {
-      res.redirect("/");
-    }
-);
-
-router.get("/callback", (req, res, next) => {
+exports.callback = (req, res, next) => {
     passport.authenticate("auth0", (err, user, info) => {
         if (err) {
             return next(err);
@@ -39,14 +25,18 @@ router.get("/callback", (req, res, next) => {
             }
             const returnTo = req.session.returnTo;
             delete req.session.returnTo;
+
+            const { _raw, _json, ...userProfile } = req.user;
+            validateLocalUser(userProfile);
+
             res.redirect(returnTo || "/");
         });
     })(req, res, next);
-});
+}
 
-router.get("/logout", (req, res) => {
+exports.logout = (req, res) => {
     req.logOut();
-  
+
     let returnTo = req.protocol + "://" + req.hostname;
     const port = req.connection.localPort;
   
@@ -68,10 +58,15 @@ router.get("/logout", (req, res) => {
     logoutURL.search = searchString;
   
     res.redirect(logoutURL);
-});
+}
 
-/**
- * Module Exports
- */
-
-module.exports = router;
+async function validateLocalUser(userProfile) {
+    const [user, created] = await User.findOrCreate({
+        where: {id: userProfile.id},
+        defaults: {
+            name: userProfile.name.givenName,
+            lastName: userProfile.name.familyName,
+            RoleName: 'User'
+        }
+    });
+}
