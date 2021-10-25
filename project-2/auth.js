@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Required External Modules
  */

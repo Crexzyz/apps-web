@@ -1,4 +1,4 @@
-// index.js
+"use strict";
 
 /**
  * Required External Modules
@@ -12,12 +12,13 @@ const Auth0Strategy = require("passport-auth0");
 require("dotenv").config();
 const authRouter = require("./auth");
 
+const db = require('./models/index.js');
+
 /**
  * App Variables
  */
 const app = express();
 const port = process.env.PORT || "8000";
-
 
 /**
  * Session Configuration
