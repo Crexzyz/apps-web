@@ -1,0 +1,9 @@
+extends layout
+
+block layout-content
+  if isAuthenticated
+      a(href="/user")
+          div.NavButton User info
+  else
+      a(href="/login")
+          div.NavButton Log in
