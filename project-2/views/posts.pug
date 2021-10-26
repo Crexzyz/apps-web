@@ -1,0 +1,12 @@
+extends layout
+
+block layout-content
+  h1 Posts
+  if posts.length == 0
+    p No available posts...
+  each post in posts
+    div.post
+      p= post.dataValues.title
+      p= post.dataValues.abstract
+      p= post.dataValues.date
+    hr
