@@ -119,3 +119,6 @@ dist
 
 # Database
 *.sqlite
+
+# Map SCSS
+*.map

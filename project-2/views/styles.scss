@@ -1,0 +1,35 @@
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+main {
+    @extend .container;
+}
+
+.top-bar {
+    @extend .navbar;
+    @extend .navbar-expand-lg;
+    @extend .navbar-dark;
+    @extend .bg-dark;
+}
+
+.banner {
+    @extend .bg-secondary;
+    @extend .p-4;
+    @extend .text-center;
+    @extend .text-white;
+}
+
+.bottom-bar {
+    @extend .bg-dark;
+    @extend .text-white;
+}
+
+.org-name {
+    @extend .navbar-brand;
+}
+
+.navlist {
+    @extend .navbar-nav;
+    @extend .me-auto;
+    @extend .mb-2;
+    @extend .mb-lg-0;
+}

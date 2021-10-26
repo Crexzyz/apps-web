@@ -33,3 +33,7 @@ exports.list = async (req, res) => {
         posts: posts.rows
     });
 }
+
+exports.details = async (req, res) => {
+    
+}

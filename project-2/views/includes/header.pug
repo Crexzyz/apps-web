@@ -1,2 +1,28 @@
 header
-  p Header 
+  nav.top-bar
+    div.container-fluid
+      span.org-name B72905
+      button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#top-bar", aria-controls="top-bar", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      div.collapse.navbar-collapse#top-bar
+        ul.navbar-nav
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#users-dropdown(href="#", role="button", data-bs-toggle="dropdown", aria-expanded="false") Access
+            ul.dropdown-menu(aria-labelledby="users-dropdown")
+              if isAuthenticated
+                li 
+                  a.dropdown-item(href="/posts") Posts
+                li
+                  a.dropdown-item(href="/user") Me
+                hr.dropdown-divider
+                li
+                  a.dropdown-item(href="/logout") Logout
+              else
+                li
+                  a.dropdown-item(href="/login") Log in
+            //- if session.role === "Admin"
+          li.nav-item
+            a.nav-link(href="/admin", target="_blank", rel="noopener noreferrer") Administration
+  h2.banner Cloud Journal
+    
+  
