@@ -51,6 +51,8 @@ exports.list = async (req, res) => {
         post.commentsCount = await post.countComments();
     }
     
+    // TODO: Handle 300+ chars in abstract
+
     res.render('posts', {
         title: 'Posts',
         posts: posts.rows,
@@ -62,5 +64,13 @@ exports.list = async (req, res) => {
 }
 
 exports.details = async (req, res) => {
-    
+    const postId = req.params.id;
+    const post = await Post.findByPk(postId);
+    const comments = await post.getComments();
+
+    res.render('post', {
+        title: 'Post',
+        post: post.dataValues,
+        comments: comments
+    });
 }

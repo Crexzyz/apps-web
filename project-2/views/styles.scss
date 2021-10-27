@@ -4,6 +4,10 @@ main {
     @extend .container;
 }
 
+a:link {
+    text-decoration: none;
+}
+
 .top-bar {
     @extend .navbar;
     @extend .navbar-expand-lg;
@@ -56,4 +60,11 @@ main {
     margin: 0;
     border: 1px solid gray;
     padding: 1rem;
+}
+
+.comment {
+    border: 1px solid lightgray;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }

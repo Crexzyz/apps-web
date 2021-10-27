@@ -15,6 +15,7 @@ const indexRouter = require("./routes/index");
 const authRouter = require("./routes/Auth");
 const userRouter = require("./routes/User");
 const postRouter = require("./routes/Post");
+const commentRouter = require("./routes/Comment");
 
 const db = require('./models/index.js');
 
@@ -85,6 +86,7 @@ app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/user", userRouter);
 app.use("/posts", postRouter);
+app.use("/comment", commentRouter);
 
 // Server Activation
 app.listen(port, () => {

@@ -1,0 +1,34 @@
+extends layout
+
+block layout-content
+  h1= post.title
+  p= post.date
+  //- image
+  hr
+  h2 Abstract
+  p= post.abstract
+  hr
+  p= post.text
+  hr
+  h2 Comments
+  p
+    button.btn.btn-secondary(type="button", data-bs-toggle="collapse",
+    data-bs-target="#comment-form", aria-expanded="false", aria-controls="comment-form") Add a comment
+  div.collapse#comment-form
+    div.comment
+      form(action="/comment/" + post.id, method="post") 
+        div.mb-3
+          label(for="email") Email address
+          input.form-control#email(type="email", name="email", placeholder="name@example.com")
+        div.mb-3
+          label(for="text") Your comment (200 characters max)
+          textarea.form-control#text(name="text", rows="2", maxLength="200") 
+        button.btn.btn-primary(type="submit") Submit comment
+  if comments.length === 0
+    p No comments...
+  each comment in comments
+    section.comment
+      h5= comment.dataValues.email
+      p= comment.dataValues.text
+  
+
