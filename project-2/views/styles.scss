@@ -33,3 +33,27 @@ main {
     @extend .mb-2;
     @extend .mb-lg-0;
 }
+
+#posts-section {
+    @extend .col-lg-10;
+}
+
+#metadata-section {
+    @extend .col-lg-2;
+    @extend .sticky-top;
+}
+
+.post {
+    margin: 1rem;
+}
+
+.post-date {
+    color: gray;
+}
+
+.post-info {
+    @extend .row;
+    margin: 0;
+    border: 1px solid gray;
+    padding: 1rem;
+}
