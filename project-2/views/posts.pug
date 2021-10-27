@@ -10,3 +10,15 @@ block layout-content
       p= post.dataValues.abstract
       p= post.dataValues.date
     hr
+  
+  nav(aria-label="Posts navigation")
+    ul.pagination
+      li.page-item
+        a.page-link(href="#", aria-label="Previous")
+          span(aria-hidden="true") &laquo;
+      each page in pages
+        li.page-item
+          a.page-link(href="posts?page=" + page)= page
+      li.page-item
+        a.page-link(href="#", aria-label="Next")
+          span(aria-hidden="true") &raquo;

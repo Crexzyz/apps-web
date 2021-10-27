@@ -20,17 +20,23 @@ exports.create = async (req, res) => {
 }
 
 exports.list = async (req, res) => {
-    let page = req.query.page;
-    let offset = typeof page == 'undefined' ? 0 : (page - 1) * 5;
+    let page = typeof req.query.page == 'undefined' ? 1 : req.query.page;
+    let offset = (page - 1) * 5;
 
     const posts = await Post.findAndCountAll({
         limit: 5,
         offset: offset
     });
 
+    const count = Math.ceil(posts.count / 5);
+    const startPage = page - 5 < 1 ? 1 : page - 5;
+    const endPage = page + 5 > count ? count : page + 5;
+    const pages = Array(endPage - startPage + 1).fill().map((_, idx) => startPage + idx)
+    
     res.render('posts', {
         title: 'Posts',
-        posts: posts.rows
+        posts: posts.rows,
+        pages: pages
     });
 }
 

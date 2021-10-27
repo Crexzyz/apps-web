@@ -7,7 +7,6 @@ const User = require('../models/index.js').User;
 require("dotenv").config();
 
 exports.login = (req, res) => {
-    // passport.authenticate("auth0", {scope: "openid email profile"});
     res.redirect("/");
 }
 
