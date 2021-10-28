@@ -3,6 +3,7 @@
 const Post = require('../models/index.js').Post;
 const User = require('../models/index.js').User;
 const Category = require('../models/index.js').Category;
+const PostsHelper = require("./PostsHelper");
 
 exports.form = async (req, res) => {
     const categories = await Category.findAll();
@@ -29,33 +30,15 @@ exports.create = async (req, res) => {
 }
 
 exports.list = async (req, res) => {
-    let page = 0;
-
-    if(typeof req.query.page === 'undefined') {
-        page = 1;
-    }
-    else {
-        page = parseInt(req.query.page);
-        page = isNaN(page) ? 1 : page;
-    }
-
-    let offset = (page - 1) * 5;
-
-    const posts = await Post.findAndCountAll({
-        limit: 5,
-        offset: offset,
-        include: User
-    });
-
-    const count = Math.ceil(posts.count / 5);
-    const startPage = page - 5 < 1 ? 1 : page - 5;
-    const endPage = page + 5 > count ? count : page + 5;
-    const pages = Array(endPage - startPage + 1).fill().map((_, idx) => startPage + idx);
-
+    const postsData = await PostsHelper.getPostsPaged(req.query.page);
     const categories = await Category.findAll();
     const users = await User.findAll();
 
-    for(const post of posts.rows) {
+    for(const category of categories) {
+        category.decoded = decodeURIComponent(category.name);
+    }
+
+    for(const post of postsData.posts) {
         post.commentsCount = await post.countComments();
     }
     
@@ -63,11 +46,25 @@ exports.list = async (req, res) => {
 
     res.render('posts', {
         title: 'Posts',
-        posts: posts.rows,
-        pages: pages,
-        active: page,
+        posts: postsData.posts,
+        pages: postsData.pages,
+        active: postsData.page,
         categories: categories,
         users: users
+    });
+}
+
+exports.listCategory = async (req, res) => {
+    const category = req.params.name;
+
+    const postsData = await PostsHelper.getPostsPaged(req.query.page, { CategoryName: category });
+
+    res.render('category', {
+        title: category,
+        category: category,
+        posts: postsData.posts,
+        pages: postsData.pages,
+        active: postsData.page,
     });
 }
 

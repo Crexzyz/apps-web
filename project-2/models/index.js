@@ -39,6 +39,7 @@ db.Post.belongsTo(db.Category, {foreignKey: {allowNull: false}});
 db.Category.hasMany(db.Post);
 
 db.Post.belongsToMany(db.Category, {through: 'PostCategory'});
+db.Category.belongsToMany(db.Post, {through: 'PostCategory'});
 
 db.Comment.belongsTo(db.Post, {foreignKey: {allowNull: false}});
 db.Post.hasMany(db.Comment);
@@ -57,7 +58,7 @@ sequelize
 //     db.Category.bulkCreate([
 //       {name: 'PHP'},
 //       {name: 'JavaScript'},
-//       {name: 'C#'},
+//       {name: 'C%23'},
 //     ]);
 //     db.Role.bulkCreate([
 //       {name: 'Admin'},

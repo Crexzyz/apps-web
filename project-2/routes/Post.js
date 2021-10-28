@@ -9,5 +9,6 @@ router.get('/new', secured, controller.form);
 router.post('/new', secured, controller.create);
 router.get('/', secured, controller.list);
 router.get('/:id', secured, controller.details);
+router.get('/category/:name', secured, controller.listCategory);
 
 module.exports = router;

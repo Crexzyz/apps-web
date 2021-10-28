@@ -4,30 +4,7 @@ block layout-content
 
   div.row
     div#posts-section
-      if posts.length == 0
-        p No available posts...
-      each post in posts
-        div.post
-          div.row
-            h3.col-sm-auto= post.dataValues.title
-            p.col-sm-6.post-date= post.dataValues.date
-          p= post.dataValues.abstract
-          div.post-info
-            a.col-sm-auto(href="user/" + post.dataValues.User.id,
-            target="_blank",
-            rel="noopener noreferrer")= "Author: " + post.dataValues.User.name + " " + post.dataValues.User.lastName
-            a.col-sm-4(href="posts/" + post.dataValues.id)= "Comments: " + post.commentsCount
-
-      nav(aria-label="Posts navigation")
-        ul.pagination
-          each page in pages
-            if page === active
-              li.page-item.active
-                a.page-link(href="posts?page=" + page)= page
-            else
-              li.page-item
-                a.page-link(href="posts?page=" + page)= page
-
+      include includes/post_section.pug
 
     div#metadata-section
       a.btn.btn-primary(href="/posts/new") Create a new post
@@ -36,8 +13,8 @@ block layout-content
       ul
         each category in categories
           li
-            a(href="category/" + category.name,
-            target="_blank", rel="noopener noreferrer")= category.name
+            a(href="/posts/category/" + category.name,
+            target="_blank", rel="noopener noreferrer")= category.decoded
       h4 Authors
       ul
         each user in users 
