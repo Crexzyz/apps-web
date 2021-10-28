@@ -2,9 +2,13 @@
 
 const Post = require('../models/index.js').Post;
 const User = require('../models/index.js').User;
+const Category = require('../models/index.js').Category;
+
 
 module.exports = {
     getPostsPaged: async function (pageParam, whereOptions={}) {
+        const categories = await Category.findAll();
+        const users = await User.findAll();
         let page = 0;
     
         if(typeof pageParam === 'undefined') {
@@ -34,10 +38,16 @@ module.exports = {
             post.commentsCount = await post.countComments();
         }
     
+        for(const category of categories) {
+            category.decoded = decodeURIComponent(category.name);
+        }
+    
         return {
             pages: pages,
             posts: posts.rows,
-            page: page
+            page: page,
+            users: users,
+            categories: categories
         }
     }
 }

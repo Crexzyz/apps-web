@@ -18,7 +18,7 @@ block layout-content
       select.form-select#category(name="category", aria-label="Category", required)
         option(value="") Select a category 
         each category in categories
-          option(value=category.name)= category.name
+          option(value=category.name)= category.decoded
     div.mb-3
       label.form-label(for="image") Image (optional)
       input.form-control#image(type="file", name="image")

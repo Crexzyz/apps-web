@@ -1,7 +1,7 @@
 extends layout
 
 block layout-content
-
+  h1= header
   div.row
     div#posts-section
       include includes/post_section.pug
@@ -19,6 +19,6 @@ block layout-content
       ul
         each user in users 
           li
-            a(href="user/" + user.id, target="_blank", rel="noopener noreferrer")= user.name
+            a(href="/posts/user/" + user.id, target="_blank", rel="noopener noreferrer")= user.name
 
   

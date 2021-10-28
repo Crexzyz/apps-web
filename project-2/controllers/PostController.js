@@ -7,6 +7,9 @@ const PostsHelper = require("./PostsHelper");
 
 exports.form = async (req, res) => {
     const categories = await Category.findAll();
+    for(const category of categories) {
+        category.decoded = decodeURIComponent(category.name);
+    }
 
     res.render('post_form', {
         title: 'Create post',
@@ -29,53 +32,64 @@ exports.create = async (req, res) => {
     res.redirect('/posts');
 }
 
+exports.details = async (req, res) => {
+    const postId = req.params.id;
+    const post = await Post.findByPk(postId);
+    const comments = await post.getComments();
+    
+    res.render('post', {
+        title: 'Post',
+        post: post.dataValues,
+        comments: comments
+    });
+}
+
 exports.list = async (req, res) => {
     const postsData = await PostsHelper.getPostsPaged(req.query.page);
-    const categories = await Category.findAll();
-    const users = await User.findAll();
 
-    for(const category of categories) {
-        category.decoded = decodeURIComponent(category.name);
-    }
-
-    for(const post of postsData.posts) {
-        post.commentsCount = await post.countComments();
-    }
-    
     // TODO: Handle 300+ chars in abstract
 
     res.render('posts', {
         title: 'Posts',
+        header: 'All posts',
         posts: postsData.posts,
         pages: postsData.pages,
         active: postsData.page,
-        categories: categories,
-        users: users
+        categories: postsData.categories,
+        users: postsData.users
     });
 }
 
 exports.listCategory = async (req, res) => {
     const category = req.params.name;
+    const categoryEncoded = encodeURIComponent(category);
 
-    const postsData = await PostsHelper.getPostsPaged(req.query.page, { CategoryName: category });
+    const postsData = await PostsHelper.getPostsPaged(req.query.page, { CategoryName: categoryEncoded });
 
-    res.render('category', {
+    res.render('posts', {
         title: category,
-        category: category,
+        header: 'Category: ' + category,
         posts: postsData.posts,
         pages: postsData.pages,
         active: postsData.page,
+        categories: postsData.categories,
+        users: postsData.users
     });
 }
 
-exports.details = async (req, res) => {
-    const postId = req.params.id;
-    const post = await Post.findByPk(postId);
-    const comments = await post.getComments();
+exports.listUser = async (req, res) => {
+    const userId = req.params.id;
 
-    res.render('post', {
-        title: 'Post',
-        post: post.dataValues,
-        comments: comments
+    const user = await User.findByPk(userId);
+    const postsData = await PostsHelper.getPostsPaged(req.query.page, { UserId: userId });
+
+    res.render('posts', {
+        title: user.dataValues.name,
+        header: 'User: ' + user.dataValues.name,
+        posts: postsData.posts,
+        pages: postsData.pages,
+        active: postsData.page,
+        categories: postsData.categories,
+        users: postsData.users
     });
 }
