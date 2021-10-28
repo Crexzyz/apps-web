@@ -3,13 +3,13 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/PostController');
-const secured = require('./Secured');
+const Customs = require('./Customs');
 
-router.get('/new', secured, controller.form);
-router.post('/new', secured, controller.create);
-router.get('/', secured, controller.list);
-router.get('/:id', secured, controller.details);
-router.get('/category/:name', secured, controller.listCategory);
-router.get('/user/:id', secured, controller.listUser);
+router.get('/new', Customs.loggedInOnly, controller.form);
+router.post('/new', Customs.loggedInOnly, controller.create);
+router.get('/', Customs.loggedInOnly, controller.list);
+router.get('/:id', Customs.loggedInOnly, controller.details);
+router.get('/category/:name', Customs.loggedInOnly, controller.listCategory);
+router.get('/user/:id', Customs.loggedInOnly, controller.listUser);
 
 module.exports = router;

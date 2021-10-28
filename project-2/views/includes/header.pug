@@ -6,8 +6,9 @@ header
         span.navbar-toggler-icon
       div.collapse#links
         ul.navbar-nav
-          li.nav-item.dropdown
-            a.nav-link.dropdown-toggle#users-dropdown(href="#", role="button", data-bs-toggle="dropdown", aria-expanded="false") Access
+          li.nav-item.user-dropdown
+            a.nav-link.dropdown-toggle#users-dropdown(role="button",
+            data-bs-toggle="dropdown", aria-expanded="false") Access
             ul.dropdown-menu(aria-labelledby="users-dropdown")
               if isAuthenticated
                 li 
@@ -21,8 +22,16 @@ header
                 li
                   a.dropdown-item(href="/login") Log in
           if isAdmin 
-            li.nav-item
-              a.nav-link(href="/admin", target="_blank", rel="noopener noreferrer") Administration
+            li.nav-item.admin-dropdown
+              a.nav-link.dropdown-toggle#admin-dropdown(role="button",
+              data-bs-toggle="dropdown", aria-expanded="false") Administration
+              ul.dropdown-menu(aria-labelledby="admin-dropdown")
+                li 
+                  a.dropdown-item(href="/admin/posts") Posts
+                li
+                  a.dropdown-item(href="/admin/categories") Categories
+                li
+                  a.dropdown-item(href="/admin/users") Users
   h2.banner Cloud Journal
     
   

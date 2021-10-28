@@ -8,7 +8,7 @@ exports.isAuthenticated = function (req, res, next) {
 }
 
 exports.isUserAdmin = async function (req, res, next) {
-    if(typeof req.user === 'undefined') {
+    if(req.user === undefined) {
         res.locals.isAdmin = false;
     }
     else {
@@ -20,7 +20,11 @@ exports.isUserAdmin = async function (req, res, next) {
             raw: true
         });
 
-        res.locals.isAdmin = (role.RoleName === 'Admin');
+        if(role === null || role === undefined) {
+            res.locals.isAuthenticated = false;
+        }
+        else
+            res.locals.isAdmin = role.RoleName === 'Admin';
     }
 
     next();

@@ -1,0 +1,32 @@
+extends layout
+
+block layout-content
+  div.table-responsive-md
+    table.table.table-hover
+      thead
+        tr
+          th(scope="col") Id
+          th(scope="col") Name
+          th(scope="col") Last name
+          th(scope="col") Role
+          th(scope="col") 
+          th(scope="col") 
+      tbody
+        each user in users
+          tr
+            form(id="u-" + user.id, action="/admin/users/update", method="post")
+            th(scope="row")= user.id
+            td= user.name
+            td= user.lastName
+            td
+              select.form-select(form="u-" + user.id, name="role", aria-label="Role")
+                each role in roles
+                  if(role.name === user.RoleName)
+                    option(selected, value=role.name)= role.name
+                  else
+                    option(value=role.name)= role.name
+            td
+              button.btn.btn-success(form="u-" + user.id, name="id", value=user.id, type="submit") Update
+            td
+              form(id="d-" + user.id, action="/admin/users/delete", method="post")
+              button.btn.btn-danger(form="d-" + user.id, name="id", value=user.id, type="submit") Delete

@@ -3,8 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/CommentController');
-const secured = require('./Secured');
+const Customs = require('./Customs');
 
-router.post('/:id', secured, controller.create);
+router.post('/:id', Customs.loggedInOnly, controller.create);
 
 module.exports = router;
