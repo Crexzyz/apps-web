@@ -4,19 +4,27 @@ const Post = require('../models/index.js').Post;
 const User = require('../models/index.js').User;
 const Category = require('../models/index.js').Category;
 
-exports.form = (req, res) => {
-    res.render('post_form', {title: 'Create post'});
+exports.form = async (req, res) => {
+    const categories = await Category.findAll();
+
+    res.render('post_form', {
+        title: 'Create post',
+        categories: categories
+    });
 }
 
 exports.create = async (req, res) => {
-    await Post.create({
+    // TODO: Trim fixed-length fields
+    // TODO: Validate category existence/handle sequelize errors
+    const post = await Post.create({
         title: req.body.title,
         abstract: req.body.abstract,
         text: req.body.text,
-        image: req.body.image,
+        image: req.body.image, // TODO: handle multipart/form-data
         UserId: req.user.id,
-        CategoryName: 'PHP' // TODO: Un-hardcode
+        CategoryName: req.body.category
     });
+
     res.redirect('/posts');
 }
 
