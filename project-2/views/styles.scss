@@ -22,6 +22,11 @@ a:link {
     @extend .text-white;
 }
 
+#links {
+    @extend .navbar-collapse;
+    @extend .flex-row-reverse;
+}
+
 .bottom-bar {
     @extend .bg-dark;
     @extend .text-white;

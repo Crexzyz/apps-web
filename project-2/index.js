@@ -19,6 +19,8 @@ const commentRouter = require("./routes/Comment");
 
 const db = require('./models/index.js');
 
+const userInfo = require('./middleware/UserInfo');
+
 /**
  * App Variables
  */
@@ -76,10 +78,8 @@ passport.serializeUser((user, done) => {done(null, user);});
 passport.deserializeUser((user, done) => {done(null, user);});
 
 // Creating custom middleware with Express
-app.use((req, res, next) => {
-    res.locals.isAuthenticated = req.isAuthenticated();
-    next();
-});
+app.use(userInfo.isAuthenticated);
+app.use(userInfo.isUserAdmin);
 
 // Router mounting
 app.use("/", indexRouter);

@@ -2,9 +2,9 @@ header
   nav.top-bar
     div.container-fluid
       span.org-name B72905
-      button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#top-bar", aria-controls="top-bar", aria-expanded="false", aria-label="Toggle navigation")
+      button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#links", aria-controls="links", aria-expanded="false", aria-label="Toggle navigation")
         span.navbar-toggler-icon
-      div.collapse.navbar-collapse#top-bar
+      div.collapse#links
         ul.navbar-nav
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#users-dropdown(href="#", role="button", data-bs-toggle="dropdown", aria-expanded="false") Access
@@ -20,9 +20,9 @@ header
               else
                 li
                   a.dropdown-item(href="/login") Log in
-            //- if session.role === "Admin"
-          li.nav-item
-            a.nav-link(href="/admin", target="_blank", rel="noopener noreferrer") Administration
+          if isAdmin 
+            li.nav-item
+              a.nav-link(href="/admin", target="_blank", rel="noopener noreferrer") Administration
   h2.banner Cloud Journal
     
   

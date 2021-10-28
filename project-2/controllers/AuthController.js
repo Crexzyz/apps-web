@@ -1,10 +1,11 @@
 "use strict";
 
-const passport = require("passport");
-const querystring = require("querystring");
+const passport = require('passport');
+const querystring = require('querystring');
 const User = require('../models/index.js').User;
 
-require("dotenv").config();
+require('dotenv').config();
+
 
 exports.login = (req, res) => {
     res.redirect("/");
