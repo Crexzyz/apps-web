@@ -61,12 +61,16 @@ exports.logout = (req, res) => {
 }
 
 async function validateLocalUser(userProfile) {
+    const givenName = userProfile.name.givenName;
+    const name = typeof givenName === 'undefined' ? userProfile.nickname : givenName;
+    const defaultRole = 'User';
+
     const [user, created] = await User.findOrCreate({
         where: {id: userProfile.id},
         defaults: {
-            name: userProfile.name.givenName,
+            name: name,
             lastName: userProfile.name.familyName,
-            RoleName: 'User'
+            RoleName: defaultRole
         }
     });
 }

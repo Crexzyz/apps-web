@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "nodemon ./index.js",
-    "compileSass": "sass views/styles.scss public/styles.css --style=compressed --embed-sources"
+    "sass": "sass views/styles.scss public/styles.css --style=compressed --embed-sources"
   },
   "keywords": [],
   "author": "",
