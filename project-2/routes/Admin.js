@@ -8,7 +8,10 @@ const Customs = require('./Customs')
 router.get("/users", Customs.loggedInOnly, Customs.adminOnly, controller.users);
 router.post("/users/update", Customs.loggedInOnly, Customs.adminOnly, controller.updateUser);
 router.post("/users/delete", Customs.loggedInOnly, Customs.adminOnly, controller.deleteUser);
-// router.get("/categories", controller.categories);
+
+router.get("/categories", Customs.loggedInOnly, Customs.adminOnly, controller.categories);
+router.post("/categories/delete", Customs.loggedInOnly, Customs.adminOnly, controller.deleteCategory);
+router.post("/categories/create", Customs.loggedInOnly, Customs.adminOnly, controller.createCategory);
 // router.get("/posts", controller.posts);
 
 module.exports = router;

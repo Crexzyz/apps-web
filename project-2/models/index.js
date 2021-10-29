@@ -35,9 +35,6 @@ db.Role.hasMany(db.User);
 db.Post.belongsTo(db.User, {foreignKey: {allowNull: false}});
 db.User.hasMany(db.Post);
 
-db.Post.belongsTo(db.Category, {foreignKey: {allowNull: false}});
-db.Category.hasMany(db.Post);
-
 db.Post.belongsToMany(db.Category, {through: 'PostCategory'});
 db.Category.belongsToMany(db.Post, {through: 'PostCategory'});
 

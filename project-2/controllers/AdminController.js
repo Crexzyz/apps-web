@@ -1,7 +1,12 @@
 "use strict";
 
-const User = require('../models/index.js').User;
-const Role = require('../models/index.js').Role;
+
+const db = require('../models/index.js');
+const User = db.User;
+const Role = db.Role;
+const Post = db.Post;
+const Category = db.Category;
+const PostCategory = db.sequelize.models.PostCategory;
 
 exports.users = async function (req, res) {
     const users = await User.findAll({raw: true});
@@ -15,6 +20,7 @@ exports.users = async function (req, res) {
 }
 
 exports.deleteUser = async function (req, res) {
+    // TODO: handle self-deletion
     await User.destroy({
         where: {
             id: req.body.id
@@ -32,4 +38,46 @@ exports.updateUser = async function (req, res) {
     })
 
     exports.users(req, res)
+}
+
+exports.categories = async function (req, res) {
+    const result = await Category.findAll({
+        attributes: [
+            'name',
+            [db.sequelize.fn('COUNT', db.sequelize.col('Posts.id')), 'CategoryCount']
+        ],
+        include: [{
+            model: Post,
+            through: {attributes: []}
+        }],
+        group: ['name'],
+        raw: true
+    });
+
+    for(const category of result) {
+        category.decoded = decodeURIComponent(category.name);
+    }
+
+    res.render('admin_categories', {
+        title: 'Categories',
+        categories: result
+    });
+}
+
+exports.createCategory = async function (req, res) {
+    const category = await Category.create({
+        name: encodeURIComponent(req.body.name)
+    });
+
+    exports.categories(req, res);
+}
+
+exports.deleteCategory = async function (req, res) {
+    await Category.destroy({
+        where: {
+            name: decodeURIComponent(req.body.name)
+        }
+    });
+
+    exports.categories(req, res);
 }

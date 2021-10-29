@@ -1,0 +1,19 @@
+extends layout
+
+block layout-content
+  h1 Categories
+  div.container 
+      div.row.row-cols-1.row-cols-md-5.justify-content-between
+        each category in categories
+          div.category
+            h5= category.decoded
+            p= "Posts in this category: " + category.CategoryCount
+            form(action="/admin/categories/delete", method="post") 
+              button.btn.btn-danger(type="submit", name="name", value=category.name) Delete
+        div.category
+          h5 Add a new category
+          form(action="/admin/categories/create", method="post") 
+              input.form-control#name(type="text", name="name", placeholder="Category name")
+              br
+              button.btn.btn-success(type="submit") Create
+

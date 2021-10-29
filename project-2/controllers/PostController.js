@@ -1,8 +1,10 @@
 "use strict";
 
-const Post = require('../models/index.js').Post;
-const User = require('../models/index.js').User;
-const Category = require('../models/index.js').Category;
+const db = require('../models/index.js');
+const User = db.User;
+const Post = db.Post;
+const Category = db.Category;
+const PostCategory = db.sequelize.models.PostCategory;
 const PostsHelper = require("./PostsHelper");
 
 exports.form = async (req, res) => {
@@ -26,8 +28,13 @@ exports.create = async (req, res) => {
         text: req.body.text,
         image: req.body.image, // TODO: handle multipart/form-data
         UserId: req.user.id,
-        CategoryName: req.body.category
     });
+
+    // TODO: Handle multiple categories
+    const postCategory = await PostCategory.create({
+        PostId: post.id,
+        CategoryName: req.body.category
+    })
 
     res.redirect('/posts');
 }
@@ -64,7 +71,11 @@ exports.listCategory = async (req, res) => {
     const category = req.params.name;
     const categoryEncoded = encodeURIComponent(category);
 
-    const postsData = await PostsHelper.getPostsPaged(req.query.page, { CategoryName: categoryEncoded });
+    const postsData = await PostsHelper.getPostsPaged(req.query.page, {}, [{
+            model: Category,
+            where: {name: categoryEncoded},
+        }]
+    );
 
     res.render('posts', {
         title: category,
