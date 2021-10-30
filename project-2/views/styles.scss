@@ -80,3 +80,7 @@ a:link {
     padding: 1rem;
     margin: 0.5rem;
 }
+
+.admin-post {
+    @extend .comment;    
+}

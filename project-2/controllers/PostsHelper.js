@@ -4,7 +4,6 @@ const db = require('../models/index.js');
 const User = db.User;
 const Post = db.Post;
 const Category = db.Category;
-const PostCategory = db.sequelize.models.PostCategory;
 
 exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptions=[]) {
     const categories = await Category.findAll();
@@ -52,5 +51,13 @@ exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptio
         users: users,
         categories: categories
     }
+}
+
+exports.deletePost = async function(id) {
+    await Post.destroy({
+        where: {
+            id: id
+        }
+    })
 }
 

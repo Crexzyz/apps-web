@@ -1,0 +1,9 @@
+nav(aria-label="Posts navigation")
+  ul.pagination
+    each page in pages
+      if page === active
+        li.page-item.active
+          a.page-link(href="posts?page=" + page)= page
+      else
+        li.page-item
+          a.page-link(href="posts?page=" + page)= page

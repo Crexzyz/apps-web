@@ -12,6 +12,8 @@ router.post("/users/delete", Customs.loggedInOnly, Customs.adminOnly, controller
 router.get("/categories", Customs.loggedInOnly, Customs.adminOnly, controller.categories);
 router.post("/categories/delete", Customs.loggedInOnly, Customs.adminOnly, controller.deleteCategory);
 router.post("/categories/create", Customs.loggedInOnly, Customs.adminOnly, controller.createCategory);
-// router.get("/posts", controller.posts);
+
+router.get("/posts", Customs.loggedInOnly, Customs.adminOnly, controller.posts);
+router.post("/posts/delete", Customs.loggedInOnly, Customs.adminOnly, controller.deletePost);
 
 module.exports = router;

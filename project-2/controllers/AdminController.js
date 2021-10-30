@@ -2,11 +2,11 @@
 
 
 const db = require('../models/index.js');
+const PostsHelper = require("./PostsHelper");
 const User = db.User;
 const Role = db.Role;
 const Post = db.Post;
 const Category = db.Category;
-const PostCategory = db.sequelize.models.PostCategory;
 
 exports.users = async function (req, res) {
     const users = await User.findAll({raw: true});
@@ -80,4 +80,25 @@ exports.deleteCategory = async function (req, res) {
     });
 
     exports.categories(req, res);
+}
+
+exports.posts = async function (req, res) {
+    const postsData = await PostsHelper.getPostsPaged(req.query.page);
+
+    res.render('admin_posts', {
+        title: 'Posts',
+        posts: postsData.posts,
+        pages: postsData.pages,
+        active: postsData.page,
+    });
+}
+
+exports.postDetails = async function (req, res) {
+    
+}
+
+exports.deletePost = async function (req, res) {
+    await PostsHelper.deletePost(req.body.id);
+
+    exports.posts(req, res);
 }

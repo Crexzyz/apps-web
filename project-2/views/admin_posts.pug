@@ -1,0 +1,18 @@
+extends layout
+
+block layout-content
+  each post in posts
+    div.admin-post
+      h4
+        a.text-break(href="/admin/post/" + post.dataValues.id,
+        target="_blank", rel="noopener noreferrer")= post.dataValues.title
+      p= post.dataValues.date
+      p.text-break= post.dataValues.abstract
+      div.row
+        a.col-sm-auto(href="/users/" + post.dataValues.User.id,
+        target="_blank",
+        rel="noopener noreferrer")= "Author: " + post.dataValues.User.name + " " + post.dataValues.User.lastName
+        form.col-sm-4(action="/admin/posts/delete", method="post") 
+          button.btn.btn-danger(type="submit", name="id", value=post.dataValues.id) Delete
+  
+  include includes/post_navigation.pug
