@@ -23,11 +23,17 @@ exports.form = async (req, res) => {
 exports.create = async (req, res) => {
     // TODO: Trim fixed-length fields
     // TODO: Validate category existence/handle sequelize errors
+
+    const image = '';
+    if(req.file !== undefined && req.file.filename !== undefined){
+        image = req.file.filename;
+    }
+
     const post = await Post.create({
         title: req.body.title,
         abstract: req.body.abstract,
         text: req.body.text,
-        image: req.file.filename,
+        image: image,
         UserId: req.user.id,
     });
 

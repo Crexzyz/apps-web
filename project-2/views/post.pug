@@ -3,7 +3,9 @@ extends layout
 block layout-content
   h1.text-break= post.title
   p= post.date
-  //- image
+  if post.image !== ''
+    div.text-center
+      img.post-image(src="/images/" + post.image, alt="Post image")
   hr
   h2 Abstract
   p.text-break= post.abstract
