@@ -1,11 +1,12 @@
 "use strict";
 
 const db = require('../models/index.js');
+const PostsHelper = require("./PostsHelper");
+const multer = require('multer');
 const User = db.User;
 const Post = db.Post;
 const Category = db.Category;
 const PostCategory = db.sequelize.models.PostCategory;
-const PostsHelper = require("./PostsHelper");
 
 exports.form = async (req, res) => {
     const categories = await Category.findAll();
@@ -26,7 +27,7 @@ exports.create = async (req, res) => {
         title: req.body.title,
         abstract: req.body.abstract,
         text: req.body.text,
-        image: req.body.image, // TODO: handle multipart/form-data
+        image: req.file.filename,
         UserId: req.user.id,
     });
 

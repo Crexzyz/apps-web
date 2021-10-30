@@ -5,6 +5,8 @@ each post in posts
     div.row
       h3.col-sm-auto.text-break= post.dataValues.title
       p.col-sm-6.post-date= post.dataValues.date
+    div.text-center
+      img.post-image(src="/images/" + post.image, alt="Post image")
     p.text-break= post.dataValues.abstract
   div.post-info
     a.col-sm-auto(href="user/" + post.dataValues.User.id,

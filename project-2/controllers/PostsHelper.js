@@ -1,6 +1,8 @@
 "use strict";
 
 const db = require('../models/index.js');
+const fs = require('fs');
+const path = require('path');
 const User = db.User;
 const Post = db.Post;
 const Category = db.Category;
@@ -54,6 +56,22 @@ exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptio
 }
 
 exports.deletePost = async function(id) {
+    const post = await Post.findOne({
+        where: {
+            id: id
+        },
+        attributes: ['image'],
+        raw: true
+    })
+
+    const imagePath = path.join(__dirname, "../public/images", post.image);
+
+    try {
+        fs.unlinkSync(imagePath);
+    } catch(error) {
+        console.error(error);
+    }
+
     await Post.destroy({
         where: {
             id: id

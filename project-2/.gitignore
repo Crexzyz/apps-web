@@ -122,3 +122,6 @@ dist
 
 # Map SCSS
 *.map
+
+# images folder
+public/images/
