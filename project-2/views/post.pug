@@ -1,14 +1,14 @@
 extends layout
 
 block layout-content
-  h1= post.title
+  h1.text-break= post.title
   p= post.date
   //- image
   hr
   h2 Abstract
-  p= post.abstract
+  p.text-break= post.abstract
   hr
-  p= post.text
+  p.text-break= post.text
   hr
   h2 Comments
   p
@@ -29,6 +29,6 @@ block layout-content
   each comment in comments
     section.comment
       h5= comment.dataValues.email
-      p= comment.dataValues.text
+      p.text-break= comment.dataValues.text
   
 
