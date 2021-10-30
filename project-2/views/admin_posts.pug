@@ -1,10 +1,12 @@
 extends layout
 
 block layout-content
+  if posts.length === 0
+    div.admin-post No available posts...
   each post in posts
     div.admin-post
       h4
-        a.text-break(href="/admin/post/" + post.dataValues.id,
+        a.text-break(href="/posts/" + post.dataValues.id,
         target="_blank", rel="noopener noreferrer")= post.dataValues.title
       p= post.dataValues.date
       p.text-break= post.dataValues.abstract

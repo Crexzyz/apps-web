@@ -61,3 +61,22 @@ exports.deletePost = async function(id) {
     })
 }
 
+exports.getAuthLevel = async function(postData, userId) {
+    if(postData.UserId === userId) {
+        return 'author';
+    }
+
+    const role = await User.findOne({
+        where: {
+            id: userId
+        },
+        attributes: ['RoleName'],
+        raw: true
+    })
+
+    if(role.RoleName === 'Admin') {
+        return 'admin';
+    }
+
+    return 'guest';
+}

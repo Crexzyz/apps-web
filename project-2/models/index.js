@@ -38,7 +38,7 @@ db.User.hasMany(db.Post);
 db.Post.belongsToMany(db.Category, {through: 'PostCategory'});
 db.Category.belongsToMany(db.Post, {through: 'PostCategory'});
 
-db.Comment.belongsTo(db.Post, {foreignKey: {allowNull: false}});
+db.Comment.belongsTo(db.Post, {foreignKey: {allowNull: false}, onDelete: 'cascade'});
 db.Post.hasMany(db.Comment);
 
 sequelize
@@ -50,17 +50,17 @@ sequelize
     console.error('Unable to connect to the database:', err);
 });
   
-// sequelize.sync({ force: true })
-//   .then(() => {
-//     db.Category.bulkCreate([
-//       {name: 'PHP'},
-//       {name: 'JavaScript'},
-//       {name: 'C%23'},
-//     ]);
-//     db.Role.bulkCreate([
-//       {name: 'Admin'},
-//       {name: 'User'}
-//     ])
-// });
+sequelize.sync({ force: true })
+  .then(() => {
+    db.Category.bulkCreate([
+      {name: 'PHP'},
+      {name: 'JavaScript'},
+      {name: 'C%23'},
+    ]);
+    db.Role.bulkCreate([
+      {name: 'Admin'},
+      {name: 'User'}
+    ])
+});
 
 module.exports = db;

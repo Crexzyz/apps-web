@@ -1,7 +1,7 @@
 "use strict";
 
-const Post = require('../models/index.js').Post;
 const Comment = require('../models/index.js').Comment;
+const getAuthLevel = require("./PostsHelper").getAuthLevel;
 
 const MAX_TEXT_LENGTH = 200;
 
@@ -14,6 +14,27 @@ exports.create = async (req, res) => {
         email: email,
         text: text,
         PostId: postId
+    });
+
+    res.redirect('/posts/' + postId);
+}
+
+exports.delete = async (req, res) => {
+    const commentId = req.params.id;
+    const postId = req.body.postId;
+    const postData = {
+        PostId: postId
+    };
+
+    const authLevel = await getAuthLevel(postData, req.user.id);
+    if(authLevel === 'guest') {
+        res.redirect('/posts/' + postId);
+    }
+    
+    await Comment.destroy({
+        where: {
+            id: commentId
+        }
     });
 
     res.redirect('/posts/' + postId);

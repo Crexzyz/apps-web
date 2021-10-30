@@ -43,11 +43,13 @@ exports.details = async (req, res) => {
     const postId = req.params.id;
     const post = await Post.findByPk(postId);
     const comments = await post.getComments();
+    const authLevel = await PostsHelper.getAuthLevel(post.dataValues, req.user.id);
     
     res.render('post', {
         title: 'Post',
         post: post.dataValues,
-        comments: comments
+        comments: comments,
+        authLevel: authLevel
     });
 }
 

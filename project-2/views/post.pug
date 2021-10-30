@@ -28,7 +28,10 @@ block layout-content
     p No comments...
   each comment in comments
     section.comment
-      h5= comment.dataValues.email
+      div.row
+        h5.col-sm-auto= comment.dataValues.email
+        if authLevel === 'author' || authLevel === 'admin'
+          form.col-sm-3(action="/comment/delete/" + comment.dataValues.id, method="post") 
+            input(type="hidden", name="postId", value=post.id)
+            button.btn.btn-danger(type="submit") Delete comment
       p.text-break= comment.dataValues.text
-  
-
