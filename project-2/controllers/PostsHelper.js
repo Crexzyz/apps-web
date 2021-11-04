@@ -80,6 +80,10 @@ exports.deletePost = async function(id) {
 }
 
 exports.getAuthLevel = async function(postData, userId) {
+    if(userId === undefined || userId === null || userId === '') {
+        return 'guest';
+    }
+
     if(postData.UserId === userId) {
         return 'author';
     }

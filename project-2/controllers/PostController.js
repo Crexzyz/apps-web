@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
     // TODO: Trim fixed-length fields
     // TODO: Validate category existence/handle sequelize errors
 
-    const image = '';
+    let image = '';
     if(req.file !== undefined && req.file.filename !== undefined){
         image = req.file.filename;
     }
@@ -50,7 +50,11 @@ exports.details = async (req, res) => {
     const postId = req.params.id;
     const post = await Post.findByPk(postId);
     const comments = await post.getComments();
-    const authLevel = await PostsHelper.getAuthLevel(post.dataValues, req.user.id);
+    let userId = '';
+    if(req.user !== undefined) {
+        userId = req.user.id;
+    }
+    const authLevel = await PostsHelper.getAuthLevel(post.dataValues, userId);
     
     res.render('post', {
         title: 'Post',

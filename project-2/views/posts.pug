@@ -7,8 +7,10 @@ block layout-content
       include includes/post_section.pug
 
     div#metadata-section
-      a.btn.btn-primary(href="/posts/new") Create a new post
-      hr
+      br
+      if isAuthenticated
+        a.btn.btn-primary(href="/posts/new") Create a new post
+        hr
       h4 Categories
       ul
         each category in categories

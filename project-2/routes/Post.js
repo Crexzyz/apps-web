@@ -29,9 +29,9 @@ const upload = multer({storage});
 
 router.get('/new', Customs.loggedInOnly, controller.form);
 router.post('/new', Customs.loggedInOnly, upload.single('image'), controller.create);
-router.get('/', Customs.loggedInOnly, controller.list);
-router.get('/:id', Customs.loggedInOnly, controller.details);
-router.get('/category/:name', Customs.loggedInOnly, controller.listCategory);
-router.get('/user/:id', Customs.loggedInOnly, controller.listUser);
+router.get('/', controller.list);
+router.get('/:id', controller.details);
+router.get('/category/:name', controller.listCategory);
+router.get('/user/:id', controller.listUser);
 
 module.exports = router;
