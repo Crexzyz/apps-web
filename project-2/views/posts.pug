@@ -2,8 +2,8 @@ extends layout
 
 block layout-content
   div.row
+    h1= header
     div#posts-section
-      h1= header
       include includes/post_section.pug
 
     div#metadata-section
@@ -22,3 +22,4 @@ block layout-content
         each user in users 
           li
             a(href="/posts/user/" + user.id, target="_blank", rel="noopener noreferrer")= user.name
+  script(src="/js/navigation.js") 

@@ -9,11 +9,11 @@ each post in posts
       div.text-center
         img.post-image(src="/images/" + post.image, alt="Post image")
     p.text-break= post.dataValues.abstract
-  div.post-info
-    a.col-sm-auto(href="user/" + post.dataValues.User.id,
-    target="_blank",
-    rel="noopener noreferrer")= "Author: " + post.dataValues.User.name + " " + post.dataValues.User.lastName
-    a.col-sm-4(href="posts/" + post.dataValues.id)= "Comments: " + post.commentsCount
+    div.post-info
+      a.col-sm-auto(href="user/" + post.dataValues.User.id,
+      target="_blank",
+      rel="noopener noreferrer")= "Author: " + post.dataValues.User.name + " " + post.dataValues.User.lastName
+      a.col-sm-4(href="posts/" + post.dataValues.id)= "Comments: " + post.commentsCount
 br
 
 include post_navigation.pug

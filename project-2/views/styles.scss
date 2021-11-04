@@ -45,6 +45,8 @@ a:link {
 
 #posts-section {
     @extend .col-lg-10;
+    display: block;
+    transition: all 1s linear;
 }
 
 #metadata-section {
@@ -52,6 +54,15 @@ a:link {
     position: sticky;
     top: 0;
     height: fit-content;
+}
+
+.page-button {
+    @extend .page-link;
+    @extend .btn;
+}
+
+.hidden {
+    display: none;
 }
 
 .post {

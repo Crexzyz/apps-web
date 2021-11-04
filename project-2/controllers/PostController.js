@@ -64,6 +64,17 @@ exports.details = async (req, res) => {
     });
 }
 
+exports.listJson = async (req, res) => {
+    const postsData = await PostsHelper.getPostsPaged(req.query.page);
+    
+    res.render('includes/post_section', {
+        posts: postsData.posts,
+        pages: postsData.pages,
+        active: postsData.page
+    });
+}
+
+
 exports.list = async (req, res) => {
     const postsData = await PostsHelper.getPostsPaged(req.query.page);
 

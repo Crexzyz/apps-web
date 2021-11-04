@@ -3,7 +3,7 @@ nav(aria-label="Posts navigation")
     each page in pages
       if page === active
         li.page-item.active
-          a.page-link(href="posts?page=" + page)= page
+          a.page-button= page
       else
         li.page-item
-          a.page-link(href="posts?page=" + page)= page
+          a.page-button= page
