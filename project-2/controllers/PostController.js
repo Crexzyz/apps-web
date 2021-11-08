@@ -91,7 +91,33 @@ exports.list = async (req, res) => {
     });
 }
 
-exports.edit = async (req, res) => {
+exports.editShow = async (req, res) => {
+    const postId = req.params.id;
+    const post = await Post.findOne({
+        where: {id: postId},
+        include: [{
+            model: Category,
+            through: {attributes: []}
+        }],
+        raw: true
+    });
+
+    post.category = post['Categories.name'];
+    delete post['Categories.name'];
+
+    const categories = await Category.findAll();
+    for(const category of categories) {
+        category.decoded = decodeURIComponent(category.name);
+    }
+    
+    res.render('post_edit', {
+        title: 'Edit post',
+        post: post,
+        categories: categories
+    });
+}
+
+exports.editSave = async (req, res) => {
 
 }
 

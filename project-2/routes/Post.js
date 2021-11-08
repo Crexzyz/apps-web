@@ -34,8 +34,8 @@ router.get('/', controller.list);
 router.get('/api/', controller.listJson);
 router.get('/:id', controller.details);
 
-router.get('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.edit);
-router.post('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.edit);
+router.get('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.editShow);
+router.post('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.editSave);
 
 router.get('/category/:name', controller.listCategory);
 
