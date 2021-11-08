@@ -7,6 +7,8 @@ const User = db.User;
 const Post = db.Post;
 const Category = db.Category;
 
+const MAX_ABSTRACT_DISPLAY_LENGTH = 300;
+
 exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptions=[]) {
     const categories = await Category.findAll();
     const users = await User.findAll();
@@ -37,6 +39,11 @@ exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptio
     const startPage = page - 5 < 1 ? 1 : page - 5;
     const endPage = page + 5 > count ? count : page + 5;
     const pages = Array(endPage - startPage + 1).fill().map((_, idx) => startPage + idx);
+
+    for(const post of posts.rows) {
+        const trimmedAbstract = post.dataValues.abstract.substring(0, MAX_ABSTRACT_DISPLAY_LENGTH);
+        post.dataValues.abstract = trimmedAbstract;
+    }
 
     for(const post of posts.rows) {
         post.commentsCount = await post.countComments();

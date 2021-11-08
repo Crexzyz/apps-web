@@ -2,6 +2,9 @@
 
 const Sequelize = require('sequelize');
 
+const MAX_TITLE_LENGTH = 100;
+const MAX_ABSTRACT_LENGTH = 400;
+
 module.exports = function(sequelize, DataTypes) {
     const Post = sequelize.define('Post', {
         id: {
@@ -15,11 +18,11 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         title: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(MAX_TITLE_LENGTH),
             allowNull: false
         },
         abstract: {
-            type: DataTypes.STRING(400),
+            type: DataTypes.STRING(MAX_ABSTRACT_LENGTH),
             allowNull: false
         },
         text: {

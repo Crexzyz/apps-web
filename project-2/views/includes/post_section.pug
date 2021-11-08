@@ -9,7 +9,13 @@ each post in posts
     if post.image !== ''
       div.text-center
         img.post-image(src="/images/" + post.image, alt="Post image")
-    p.text-break= post.dataValues.abstract
+
+    if post.dataValues.abstract.length >= 300
+      span.text-break= post.dataValues.abstract + '... '
+      a(href="/posts/" + post.dataValues.id) See more
+    else
+      p.text-break= post.dataValues.abstract
+      
     div.post-info
       a.col-sm-auto(href="user/" + post.dataValues.User.id,
       target="_blank",

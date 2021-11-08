@@ -2,11 +2,13 @@
 
 const db = require('../models/index.js');
 const PostsHelper = require("./PostsHelper");
-const multer = require('multer');
 const User = db.User;
 const Post = db.Post;
 const Category = db.Category;
 const PostCategory = db.sequelize.models.PostCategory;
+
+const MAX_TITLE_LENGTH = 100;
+const MAX_ABSTRACT_LENGTH = 400;
 
 exports.form = async (req, res) => {
     const categories = await Category.findAll();
@@ -21,7 +23,8 @@ exports.form = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-    // TODO: Trim fixed-length fields
+    const title = req.body.title.substring(0, MAX_TITLE_LENGTH);
+    const abstract = req.body.abstract.substring(0, MAX_ABSTRACT_LENGTH);
     // TODO: Validate category existence/handle sequelize errors
 
     let image = '';
@@ -30,8 +33,8 @@ exports.create = async (req, res) => {
     }
 
     const post = await Post.create({
-        title: req.body.title,
-        abstract: req.body.abstract,
+        title: title,
+        abstract: abstract,
         text: req.body.text,
         image: image,
         UserId: req.user.id,
@@ -76,8 +79,6 @@ exports.listJson = async (req, res) => {
 
 exports.list = async (req, res) => {
     const postsData = await PostsHelper.getPostsPaged(req.query.page);
-
-    // TODO: Handle 300+ chars in abstract
 
     res.render('posts', {
         title: 'Posts',
