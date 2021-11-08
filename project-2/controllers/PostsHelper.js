@@ -113,3 +113,14 @@ exports.getAuthLevel = async function(postData, userId) {
 
     return 'guest';
 }
+
+exports.associateCategories = async function(post, categories) {
+    for(const categoryText of categories) {
+        const category = await Category.findByPk(categoryText);
+        if(category === undefined || category === null) {
+            continue
+        }
+
+        await post.addCategory(category);
+    }
+}

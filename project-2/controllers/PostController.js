@@ -25,7 +25,6 @@ exports.form = async (req, res) => {
 exports.create = async (req, res) => {
     const title = req.body.title.substring(0, MAX_TITLE_LENGTH);
     const abstract = req.body.abstract.substring(0, MAX_ABSTRACT_LENGTH);
-    // TODO: Validate category existence/handle sequelize errors
 
     let image = '';
     if(req.file !== undefined && req.file.filename !== undefined){
@@ -40,11 +39,8 @@ exports.create = async (req, res) => {
         UserId: req.user.id,
     });
 
-    const categoryText = req.body.category;
-    const category = await Category.findByPk(categoryText);
-    await post.addCategory(category);
+    await PostsHelper.associateCategories(post, req.body.categories);
 
-    // TODO: Handle multiple categories
     res.redirect('/posts');
 }
 
@@ -97,17 +93,17 @@ exports.editShow = async (req, res) => {
         where: {id: postId},
         include: [{
             model: Category,
-            through: {attributes: []}
         }],
-        raw: true
     });
-
-    post.category = post['Categories.name'];
-    delete post['Categories.name'];
 
     const categories = await Category.findAll();
     for(const category of categories) {
         category.decoded = decodeURIComponent(category.name);
+        for(const postCategory of post.dataValues.Categories) {
+            if(category.name === postCategory.name) {
+                category.selected = true;
+            }
+        }
     }
     
     res.render('post_edit', {
@@ -131,9 +127,6 @@ exports.editSave = async (req, res) => {
         image = req.file.filename;
     }
 
-    const categoryText = req.body.category;
-    const category = await Category.findByPk(categoryText);
-
     const modifiedPost = {
         title: req.body.title,
         abstract: req.body.abstract,
@@ -155,7 +148,7 @@ exports.editSave = async (req, res) => {
     // See https://github.com/sequelize/sequelize/issues/11836
 
     await PostCategory.destroy({where: {PostId: postId}});
-    await post.addCategory(category);
+    await PostsHelper.associateCategories(post, req.body.categories);
     await post.save();
 
     exports.details(req, res);

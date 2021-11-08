@@ -1,37 +1,40 @@
 extends layout
 
 block layout-content
-  h1 Create a new post
-  form(action="/posts/edit/" + post.id, method="post", enctype="multipart/form-data") 
+  h1 Edit a post
+  form(action="/posts/edit/" + post.dataValues.id, method="post", enctype="multipart/form-data") 
     div.mb-3
       label.form-label(for="title") Title (100 characters max)
       input.form-control#title(type="text", name="title", maxlength="100",
-                               value=post.title, required)
+                               value=post.dataValues.title, required)
     div.mb-3
       label.form-label(for="abstract") Abstract (400 characters max)
       textarea.form-control#abstract(type="text", name="abstract", rows="3",
                                      placeholder="Abstract text", maxlength="400",
-                                     required)= post.abstract
+                                     required)= post.dataValues.abstract
     div.mb-3
       label.form-label(for="text") Text
       textarea.form-control#text(type="text", name="text", rows="3",
                                  placeholder="Post text",
-                                 required)= post.text
+                                 required)= post.dataValues.text
     div.mb-3
-      label.form-label(for="category") Category
-      select.form-select#category(name="category", aria-label="Category", required)
-        option(value="") Select a category 
-        each category in categories
-          if category.name === post.category
-            option(value=category.name, selected)= category.decoded
+      label.form-label Category
+      each category in categories
+        div.form-check
+          if category.selected
+            input.form-check-input(type="checkbox" name="categories[]",
+                                   value=category.name, id=category.name, checked)
           else
-            option(value=category.name)= category.decoded
+            input.form-check-input(type="checkbox" name="categories[]",
+                                   value=category.name, id=category.name)
+          label.form-check-label(for=category.name)= category.decoded  
+
     div.mb-3
-      if post.image !== ''
+      if post.dataValues.image !== ''
         div.text-center
-          img.post-image(src="/images/" + post.image, alt="Post image")
+          img.post-image(src="/images/" + post.dataValues.image, alt="Post image")
       label.form-label(for="image") Image (optional)
       input.form-control#image(type="file", name="image")
     div.mb-3
-      button.btn.btn-primary(type="submit") Create post
+      button.btn.btn-primary(type="submit") Update post
 

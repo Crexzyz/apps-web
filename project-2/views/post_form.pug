@@ -13,11 +13,11 @@ block layout-content
       label.form-label(for="text") Text
       textarea.form-control#text(type="text", name="text", rows="3", placeholder="Post text", required)
     div.mb-3
-      label.form-label(for="category") Category
-      select.form-select#category(name="category", aria-label="Category", required)
-        option(value="") Select a category 
-        each category in categories
-          option(value=category.name)= category.decoded
+      label.form-label Category
+      each category in categories
+        div.form-check
+          input.form-check-input(type="checkbox" name="categories[]", value=category.name, id=category.name)
+          label.form-check-label(for=category.name)= category.decoded
     div.mb-3
       label.form-label(for="image") Image (optional)
       input.form-control#image(type="file", name="image")
