@@ -35,7 +35,7 @@ router.get('/api/', controller.listJson);
 router.get('/:id', controller.details);
 
 router.get('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.editShow);
-router.post('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.editSave);
+router.post('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, upload.single('image'), controller.editSave);
 
 router.get('/category/:name', controller.listCategory);
 

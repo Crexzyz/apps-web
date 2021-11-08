@@ -28,7 +28,7 @@ exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptio
     const posts = await Post.findAndCountAll({
         where: whereOptions,
         include: include,
-        order: [['date', 'ASC']],
+        order: [['date', 'DESC']],
         limit: 5,
         offset: offset,
     });
@@ -55,6 +55,16 @@ exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptio
     }
 }
 
+exports.deleteImage = function(imageName) {
+    const imagePath = path.join(__dirname, "../public/images", imageName);
+
+    try {
+        fs.unlinkSync(imagePath);
+    } catch(error) {
+        console.error(error);
+    }
+}
+
 exports.deletePost = async function(id) {
     const post = await Post.findOne({
         where: {
@@ -64,13 +74,7 @@ exports.deletePost = async function(id) {
         raw: true
     })
 
-    const imagePath = path.join(__dirname, "../public/images", post.image);
-
-    try {
-        fs.unlinkSync(imagePath);
-    } catch(error) {
-        console.error(error);
-    }
+    exports.deleteImage(post.image);
 
     await Post.destroy({
         where: {

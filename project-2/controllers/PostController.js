@@ -37,12 +37,11 @@ exports.create = async (req, res) => {
         UserId: req.user.id,
     });
 
-    // TODO: Handle multiple categories
-    const postCategory = await PostCategory.create({
-        PostId: post.id,
-        CategoryName: req.body.category
-    })
+    const categoryText = req.body.category;
+    const category = await Category.findByPk(categoryText);
+    await post.addCategory(category);
 
+    // TODO: Handle multiple categories
     res.redirect('/posts');
 }
 
@@ -118,7 +117,47 @@ exports.editShow = async (req, res) => {
 }
 
 exports.editSave = async (req, res) => {
+    const postId = req.params.id;
+    const originalPost = await Post.findOne({
+        where: {id: postId},
+        include: [{model: Category}]
+    });
 
+    const originalImageName = originalPost.dataValues.image;
+    
+    let image = '';
+    if(req.file !== undefined && req.file.filename !== undefined){
+        image = req.file.filename;
+    }
+
+    const categoryText = req.body.category;
+    const category = await Category.findByPk(categoryText);
+
+    const modifiedPost = {
+        title: req.body.title,
+        abstract: req.body.abstract,
+        text: req.body.text,
+    };
+
+    if(image !== '') {
+        modifiedPost['image'] = image;
+    }
+
+    if(originalImageName !== '' && image !== '' && image !== originalImageName) {
+        PostsHelper.deleteImage(originalImageName);
+    }
+
+    const post = await Post.findByPk(postId);
+    await post.update(modifiedPost);
+
+    // Updating associations is not supported by Sequelize currently.
+    // See https://github.com/sequelize/sequelize/issues/11836
+
+    await PostCategory.destroy({where: {PostId: postId}});
+    await post.addCategory(category);
+    await post.save();
+
+    exports.details(req, res);
 }
 
 exports.listCategory = async (req, res) => {
