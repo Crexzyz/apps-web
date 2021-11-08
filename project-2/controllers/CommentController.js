@@ -7,7 +7,7 @@ const MAX_TEXT_LENGTH = 200;
 
 exports.create = async (req, res) => {
     const postId = req.params.id;
-    const email = req.body.email; // TODO: Validate if it can be any mail
+    const email = req.body.email;
     const text = req.body.text.substring(0, MAX_TEXT_LENGTH);
 
     const comment = await Comment.create({

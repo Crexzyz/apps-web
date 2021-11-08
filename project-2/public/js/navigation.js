@@ -18,8 +18,25 @@ function replacePosts(postsRaw) {
     postsSection.classList.toggle('hidden');
 }
 
+function addCategoryFilter(filters) {
+    const splitUrl = window.location.pathname.split('/');
+    if(splitUrl.includes('category')) {
+        filters.category = splitUrl.at(-1);
+    }
+}
+
+function addUserFilter(filters) {
+    const splitUrl = window.location.pathname.split('/');
+    if(splitUrl.includes('user')) {
+        filters.user = splitUrl.at(-1);
+    }
+}
+
 function getPosts(page) {
-    let = params = new URLSearchParams({page: page});
+    let filters = {page: page};
+    addCategoryFilter(filters);
+    addUserFilter(filters);
+    let params = new URLSearchParams(filters);
     fetch('/posts/api/?' + params, {method: 'GET'})
         .then(response => response.text())
         .then(html => replacePosts(html));

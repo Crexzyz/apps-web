@@ -62,6 +62,18 @@ exports.getPostsPaged = async function (pageParam, whereOptions={}, includeOptio
     }
 }
 
+exports.getPostsPagedByCategory = async function(page, categoryName) {
+    const filter = {
+        model: Category,
+        where: {name: categoryName}
+    }
+    return await this.getPostsPaged(page, {}, [filter])
+}
+
+exports.getPostsPagedByUser = async function(page, userId) {
+    return await this.getPostsPaged(page, {UserId: userId});
+}
+
 exports.deleteImage = function(imageName) {
     const imagePath = path.join(__dirname, "../public/images", imageName);
 

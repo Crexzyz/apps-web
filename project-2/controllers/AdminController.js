@@ -20,12 +20,13 @@ exports.users = async function (req, res) {
 }
 
 exports.deleteUser = async function (req, res) {
-    // TODO: handle self-deletion
-    await User.destroy({
-        where: {
-            id: req.body.id
-        }
-    })
+    if(req.user.id !== req.body.id) {
+        await User.destroy({
+            where: {
+                id: req.body.id
+            }
+        })
+    }
 
     exports.users(req, res)
 }

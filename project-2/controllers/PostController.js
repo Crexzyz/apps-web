@@ -63,7 +63,21 @@ exports.details = async (req, res) => {
 }
 
 exports.listJson = async (req, res) => {
-    const postsData = await PostsHelper.getPostsPaged(req.query.page);
+    const page = req.query.page;
+    const category = req.query.category;
+    const user = req.query.user;
+
+    let postsData = null;
+    
+    if(category !== undefined && category !== null) {
+        postsData = await PostsHelper.getPostsPagedByCategory(page, category);
+    }
+    else if(user !== undefined && user !== null) {
+        postsData = await PostsHelper.getPostsPagedByUser(page, user);
+    }
+    else {
+        postsData = await PostsHelper.getPostsPaged(page);
+    }
     
     res.render('includes/post_section', {
         posts: postsData.posts,
@@ -158,11 +172,7 @@ exports.listCategory = async (req, res) => {
     const category = req.params.name;
     const categoryEncoded = encodeURIComponent(category);
 
-    const postsData = await PostsHelper.getPostsPaged(req.query.page, {}, [{
-            model: Category,
-            where: {name: categoryEncoded},
-        }]
-    );
+    const postsData = await PostsHelper.getPostsPagedByCategory(req.query.page, category);
 
     res.render('posts', {
         title: category,
@@ -177,9 +187,8 @@ exports.listCategory = async (req, res) => {
 
 exports.listUser = async (req, res) => {
     const userId = req.params.id;
-
     const user = await User.findByPk(userId);
-    const postsData = await PostsHelper.getPostsPaged(req.query.page, { UserId: userId });
+    const postsData = await PostsHelper.getPostsPagedByUser(req.query.page, userId);
 
     res.render('posts', {
         title: user.dataValues.name,
