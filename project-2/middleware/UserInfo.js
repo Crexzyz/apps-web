@@ -23,8 +23,9 @@ exports.isUserAdmin = async function (req, res, next) {
         if(role === null || role === undefined) {
             res.locals.isAuthenticated = false;
         }
-        else
+        else {
             res.locals.isAdmin = role.RoleName === 'Admin';
+        }
     }
 
     next();

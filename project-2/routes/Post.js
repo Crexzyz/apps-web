@@ -34,6 +34,9 @@ router.get('/', controller.list);
 router.get('/api/', controller.listJson);
 router.get('/:id', controller.details);
 
+router.get('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.edit);
+router.post('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.edit);
+
 router.get('/category/:name', controller.listCategory);
 
 router.get('/user/:id', controller.listUser);

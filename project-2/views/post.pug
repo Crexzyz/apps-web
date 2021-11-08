@@ -3,6 +3,9 @@ extends layout
 block layout-content
   h1.text-break= post.title
   p= post.date
+  if authLevel !== 'guest'
+    a.btn.btn-secondary(href="/posts/edit/" + post.id,
+                        target="_blank", rel="noopener noreferrer") Edit post
   if post.image !== ''
     div.text-center
       img.post-image(src="/images/" + post.image, alt="Post image")
@@ -15,7 +18,8 @@ block layout-content
   h2 Comments
   p
     button.btn.btn-secondary(type="button", data-bs-toggle="collapse",
-    data-bs-target="#comment-form", aria-expanded="false", aria-controls="comment-form") Add a comment
+                             data-bs-target="#comment-form", aria-expanded="false",
+                             aria-controls="comment-form") Add a comment
   div.collapse#comment-form
     div.comment
       form(action="/comment/" + post.id, method="post") 
@@ -32,7 +36,7 @@ block layout-content
     section.comment
       div.row
         h5.col-sm-auto= comment.dataValues.email
-        if authLevel === 'author' || authLevel === 'admin'
+        if authLevel !== 'guest'
           form.col-sm-3(action="/comment/delete/" + comment.dataValues.id, method="post") 
             input(type="hidden", name="postId", value=post.id)
             button.btn.btn-danger(type="submit") Delete comment

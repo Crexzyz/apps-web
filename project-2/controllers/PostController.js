@@ -91,6 +91,10 @@ exports.list = async (req, res) => {
     });
 }
 
+exports.edit = async (req, res) => {
+
+}
+
 exports.listCategory = async (req, res) => {
     const category = req.params.name;
     const categoryEncoded = encodeURIComponent(category);

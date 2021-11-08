@@ -3,7 +3,8 @@ if posts.length == 0
 each post in posts
   div.post
     div.row
-      h3.col-sm-auto.text-break= post.dataValues.title
+      h3.col-sm-auto.text-break
+        a(href="posts/" + post.dataValues.id)= post.dataValues.title
       p.col-sm-6.post-date= post.dataValues.date
     if post.image !== ''
       div.text-center
