@@ -60,7 +60,7 @@
     </message>
 
     <message name="getLastBotPlayIn"/>
-    <message name="getLastBotPlay">
+    <message name="getLastBotPlayOut">
         <part name="return" type="xsd:string"/>
     </message>
 
