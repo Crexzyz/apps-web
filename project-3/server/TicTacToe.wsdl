@@ -49,6 +49,21 @@
         <part name="return" type="xsd:string"/>
     </message>
 
+    <message name="getTimeIn"/>
+    <message name="getTimeOut">
+        <part name="return" type="xsd:decimal"/>
+    </message>
+    
+    <message name="botPlayIn"/>
+    <message name="botPlayOut">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <message name="getLastBotPlayIn"/>
+    <message name="getLastBotPlay">
+        <part name="return" type="xsd:string"/>
+    </message>
+
     <!-- Puerto para comunicar con la clase TicTacToe, "B72905_TicTacToe" -->
 
     <portType name="B72905_TicTacToePort">
@@ -81,6 +96,21 @@
             <documentation>TicTacToe::saveTime() Saves the player's time to the top if the game finished.</documentation>
             <input message="tns:saveTimeIn"/>
             <output message="tns:saveTimeOut"/>
+        </operation>
+        <operation name="getTime">
+            <documentation>TicTacToe::getTime() Gets the time between the start and end of the game.</documentation>
+            <input message="tns:getTimeIn"/>
+            <output message="tns:getTimeOut"/>
+        </operation>
+        <operation name="botPlay">
+            <documentation>TicTacToe::botPlay() Marks a symbol randomly in the board.</documentation>
+            <input message="tns:botPlayIn"/>
+            <output message="tns:botPlayOut"/>
+        </operation>
+        <operation name="getLastBotPlay">
+            <documentation>TicTacToe::saveTime() Gets the last randomly-marked symbol.</documentation>
+            <input message="tns:getLastBotPlayIn"/>
+            <output message="tns:getLastBotPlayOut"/>
         </operation>
     </portType>
 
@@ -154,8 +184,47 @@
                            namespace="urn:B72905_TicTacToe"/>
             </output>
         </operation>
-        <operation name="saveTimeIn">
-            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#saveTimeIn"/>
+        <operation name="saveTime">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#saveTime"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="getTime">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getTime"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="botPlay">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#botPlay"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="getLastBotPlay">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getLastBotPlay"/>
             <input>
                 <soap:body use="encoded"
                            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"

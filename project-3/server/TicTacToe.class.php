@@ -24,6 +24,12 @@ class TicTacToe {
     private $playerFinalTime = 0;
     private $playerName = 'No name';
 
+    private $lastBotPlay = '';
+
+    public function __construct() {
+        $this->status = $this->STATUS_STANDBY;
+    }
+
     private function toggleTurn() {
         $this->turnNumber++;
         $this->turn = $this->turn === 'X' ? 'O' : 'X';
@@ -155,6 +161,30 @@ class TicTacToe {
         file_put_contents($this->TOP_FILENAME, json_encode($top));
     }
 
+    public function botPlay() {
+        $freePositions = array();
+        for($row = 0; $row < $this->ROWS; $row++) {
+            for($col = 0; $col < $this->COLS; $col++) {
+                if($this->board[$row][$col] === '-')
+                    array_push($freePositions, array($row, $col));
+            }
+        }
+
+        $markIndex = random_int(0, count($freePositions) - 1);
+        $markPosition = $freePositions[$markIndex];
+        $status = $this->mark($markPosition[0], $markPosition[1]);
+        if($status !== $this->STATUS_INVALID_MOVEMENT)
+            $this->lastBotPlay = "$markPosition[0], $markPosition[1]";
+        else
+            $this->lastBotPlay = $this->STATUS_INVALID_MOVEMENT;
+
+        return $status;
+    }
+
+    public function getLastBotPlay() {
+        return $this->lastBotPlay;
+    }
+
     public function getWinnerInfo() {
         return $this->winnerInfo;
     }
@@ -184,15 +214,16 @@ class TicTacToe {
     }
 
     public function getTime() {
-        return $this->playerFinalTime;
+        if($this->status !== $this->STATUS_FINISHED)
+            return -1;
+
+        return round($this->playerFinalTime, 2);
     }
 
     public function saveTime() {
         if($this->status !== $this->STATUS_FINISHED) 
             return $this->STATUS_INVALID_MOVEMENT;
         
-        $endTime = microtime(true);
-        $this->playerFinalTime = $endTime - $this->playerStartTime;
         $this->updateTop();
         return $this->status;
     }
