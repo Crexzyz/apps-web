@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Descripción WSDL de la clase Hola Mundo. -->
+
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="urn:B72905_TicTacToe"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/"
+             name="B72905_TicTacToe"
+             targetNamespace="urn:B72905_TicTacToe">
+
+    <!-- Tipos complejos -->
+
+    <types>
+    </types>
+
+    <!-- Mensajes para comunicarse con la clase TicTacToe. -->
+
+    <message name="setPlayerNameIn">
+        <part name="name" type="xsd:string"/>
+    </message>
+    <message name="setPlayerNameOut"/>
+
+    <message name="startGameIn"/>
+    <message name="startGameOut"/>
+
+    <message name="markIn">
+        <part name="row" type="xsd:int"/>
+        <part name="column" type="xsd:int"/>
+    </message>
+    <message name="markOut">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <message name="getWinnerInfoIn"/>
+    <message name="getWinnerInfoOut">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <message name="getTopPlayersIn"/>
+    <message name="getTopPlayersOut">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <message name="saveTimeIn"/>
+    <message name="saveTimeOut">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <!-- Puerto para comunicar con la clase TicTacToe, "B72905_TicTacToe" -->
+
+    <portType name="B72905_TicTacToePort">
+        <operation name="setPlayerName">
+            <documentation>TicTacToe::setPlayerName() Sets the name of the current player.</documentation>
+            <input message="tns:setPlayerNameIn"/>
+            <output message="tns:setPlayerNameOut"/>
+        </operation>
+        <operation name="startGame">
+            <documentation>TicTacToe::startGame() Starts the timer and allows to mark the board.</documentation>
+            <input message="tns:startGameIn"/>
+            <output message="tns:startGameOut"/>
+        </operation>
+        <operation name="mark">
+            <documentation>TicTacToe::mark() Marks the symbol (X) on the board.</documentation>
+            <input message="tns:markIn"/>
+            <output message="tns:markOut"/>
+        </operation>
+        <operation name="getWinnerInfo">
+            <documentation>TicTacToe::getWinnerInfo() Returns the winner metadata split by commas (row, position, symbol).</documentation>
+            <input message="tns:getWinnerInfoIn"/>
+            <output message="tns:getWinnerInfoOut"/>
+        </operation>
+        <operation name="getTopPlayers">
+            <documentation>TicTacToe::getTopPlayers() Returns the top 10 players in JSON format.</documentation>
+            <input message="tns:getTopPlayersIn"/>
+            <output message="tns:getTopPlayersOut"/>
+        </operation>
+        <operation name="saveTimeIn">
+            <documentation>TicTacToe::saveTime() Saves the player's time to the top if the game finished.</documentation>
+            <input message="tns:saveTimeIn"/>
+            <output message="tns:saveTimeOut"/>
+        </operation>
+    </portType>
+
+    <!-- Vinculación de los llamados con el transporte - RPC, SOAP/Encoded over HTTP -->
+
+    <binding name="B72905_TicTacToeBinding" type="tns:B72905_TicTacToePort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <operation name="setPlayerName">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#setPlayerName"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="startGame">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#startGame"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="mark">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#mark"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="getWinnerInfo">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getWinnerInfo"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="getTopPlayers">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getTopPlayers"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="saveTimeIn">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#saveTimeIn"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Punto de comunicación con la clase TicTacToe -->
+
+    <service name="B72905_TicTacToeService">
+        <port name="B72905_TicTacToePort" binding="tns:B72905_TicTacToeBinding">
+            <soap:address location="http://163.178.104.144:80/~eb72905/TicTacToe/"/>
+        </port>
+    </service>
+</definitions>
