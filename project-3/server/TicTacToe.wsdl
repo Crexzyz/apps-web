@@ -92,7 +92,7 @@
             <input message="tns:getTopPlayersIn"/>
             <output message="tns:getTopPlayersOut"/>
         </operation>
-        <operation name="saveTimeIn">
+        <operation name="saveTime">
             <documentation>TicTacToe::saveTime() Saves the player's time to the top if the game finished.</documentation>
             <input message="tns:saveTimeIn"/>
             <output message="tns:saveTimeOut"/>
