@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:B72905_TicTacToe" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="B72905_TicTacToe" targetNamespace="urn:B72905_TicTacToe" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="setPlayerNameIn">
+    <wsdl:part name="name" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="setPlayerNameOut" />
+  <wsdl:message name="startGameIn" />
+  <wsdl:message name="startGameOut" />
+  <wsdl:message name="markIn">
+    <wsdl:part name="row" type="xsd:int" />
+    <wsdl:part name="column" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="markOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getWinnerInfoIn" />
+  <wsdl:message name="getWinnerInfoOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getTopPlayersIn" />
+  <wsdl:message name="getTopPlayersOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="saveTimeIn" />
+  <wsdl:message name="saveTimeOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getTimeIn" />
+  <wsdl:message name="getTimeOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="botPlayIn" />
+  <wsdl:message name="botPlayOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getLastBotPlayIn" />
+  <wsdl:message name="getLastBotPlayOut">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="B72905_TicTacToePort">
+    <wsdl:operation name="setPlayerName">
+      <documentation>TicTacToe::setPlayerName() Sets the name of the current player.</documentation>
+      <wsdl:input message="tns:setPlayerNameIn" />
+      <wsdl:output message="tns:setPlayerNameOut" />
+    </wsdl:operation>
+    <wsdl:operation name="startGame">
+      <documentation>TicTacToe::startGame() Starts the timer and allows to mark the board.</documentation>
+      <wsdl:input message="tns:startGameIn" />
+      <wsdl:output message="tns:startGameOut" />
+    </wsdl:operation>
+    <wsdl:operation name="mark">
+      <documentation>TicTacToe::mark() Marks the symbol (X) on the board.</documentation>
+      <wsdl:input message="tns:markIn" />
+      <wsdl:output message="tns:markOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getWinnerInfo">
+      <documentation>TicTacToe::getWinnerInfo() Returns the winner metadata split by commas (row, position, symbol).</documentation>
+      <wsdl:input message="tns:getWinnerInfoIn" />
+      <wsdl:output message="tns:getWinnerInfoOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTopPlayers">
+      <documentation>TicTacToe::getTopPlayers() Returns the top 10 players in JSON format.</documentation>
+      <wsdl:input message="tns:getTopPlayersIn" />
+      <wsdl:output message="tns:getTopPlayersOut" />
+    </wsdl:operation>
+    <wsdl:operation name="saveTime">
+      <documentation>TicTacToe::saveTime() Saves the player's time to the top if the game finished.</documentation>
+      <wsdl:input message="tns:saveTimeIn" />
+      <wsdl:output message="tns:saveTimeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTime">
+      <documentation>TicTacToe::getTime() Gets the time between the start and end of the game.</documentation>
+      <wsdl:input message="tns:getTimeIn" />
+      <wsdl:output message="tns:getTimeOut" />
+    </wsdl:operation>
+    <wsdl:operation name="botPlay">
+      <documentation>TicTacToe::botPlay() Marks a symbol randomly in the board.</documentation>
+      <wsdl:input message="tns:botPlayIn" />
+      <wsdl:output message="tns:botPlayOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLastBotPlay">
+      <documentation>TicTacToe::saveTime() Gets the last randomly-marked symbol.</documentation>
+      <wsdl:input message="tns:getLastBotPlayIn" />
+      <wsdl:output message="tns:getLastBotPlayOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="B72905_TicTacToeBinding" type="tns:B72905_TicTacToePort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="setPlayerName">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#setPlayerName" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startGame">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#startGame" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mark">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#mark" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWinnerInfo">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getWinnerInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTopPlayers">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getTopPlayers" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveTime">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#saveTime" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTime">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getTime" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="botPlay">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#botPlay" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLastBotPlay">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#getLastBotPlay" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="B72905_TicTacToeService">
+    <wsdl:port name="B72905_TicTacToePort" binding="tns:B72905_TicTacToeBinding">
+      <soap:address location="http://163.178.104.144:80/~eb72905/TicTacToe/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
