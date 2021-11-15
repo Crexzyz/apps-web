@@ -2,6 +2,8 @@ extends layout
 
 block layout-content
   h1 Edit a post
+  form.col-sm-4(action="/posts/delete", method="post") 
+    button.btn.btn-danger(type="submit", name="id", value=post.dataValues.id) Delete post
   form(action="/posts/edit/" + post.dataValues.id, method="post", enctype="multipart/form-data") 
     div.mb-3
       label.form-label(for="title") Title (100 characters max)

@@ -168,10 +168,15 @@ exports.editSave = async (req, res) => {
     exports.details(req, res);
 }
 
+exports.deletePost = async (req, res) => {
+    const postId = req.body.id;
+    await PostsHelper.deletePost(postId);
+
+    exports.list(req, res);
+}
+
 exports.listCategory = async (req, res) => {
     const category = req.params.name;
-    const categoryEncoded = encodeURIComponent(category);
-
     const postsData = await PostsHelper.getPostsPagedByCategory(req.query.page, category);
 
     res.render('posts', {

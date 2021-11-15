@@ -19,7 +19,12 @@ exports.authorizePostAction = async (req, res, next) => {
     postId = req.params.id;
   }
 
-  const authLevel = await PostsHelper.getAuthLevel({PostId: postId}, req.user.id);
+  const ids = {
+    PostId: postId,
+    UserId: req.user.id
+  }
+
+  const authLevel = await PostsHelper.getAuthLevel(ids, req.user.id);
 
   if (authLevel === 'guest') {
     authorized = false;

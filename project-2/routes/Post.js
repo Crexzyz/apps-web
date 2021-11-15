@@ -37,6 +37,8 @@ router.get('/:id', controller.details);
 router.get('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, controller.editShow);
 router.post('/edit/:id', Customs.loggedInOnly, Customs.authorizePostAction, upload.single('image'), controller.editSave);
 
+router.post('/delete', Customs.loggedInOnly, Customs.authorizePostAction, controller.deletePost);
+
 router.get('/category/:name', controller.listCategory);
 
 router.get('/user/:id', controller.listUser);

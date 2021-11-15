@@ -127,6 +127,10 @@ exports.getAuthLevel = async function(postData, userId) {
 }
 
 exports.associateCategories = async function(post, categories) {
+    if(categories === undefined || categories == null) {
+        return
+    }
+
     for(const categoryText of categories) {
         const category = await Category.findByPk(categoryText);
         if(category === undefined || category === null) {
