@@ -20,7 +20,7 @@ exports.authorizePostAction = async (req, res, next) => {
   }
 
   const ids = {
-    PostId: postId,
+    id: postId,
     UserId: req.user.id
   }
 

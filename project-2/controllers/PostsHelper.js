@@ -107,7 +107,15 @@ exports.getAuthLevel = async function(postData, userId) {
         return 'guest';
     }
 
-    if(postData.UserId === userId) {
+    const post = await Post.findOne({
+        where: {
+            id: postData.id
+        },
+        attributes: ['UserId'],
+        raw: true
+    });
+
+    if(post.UserId === userId) {
         return 'author';
     }
 
