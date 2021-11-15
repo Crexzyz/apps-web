@@ -169,7 +169,7 @@ exports.editSave = async (req, res) => {
 }
 
 exports.deletePost = async (req, res) => {
-    const postId = req.body.id;
+    const postId = req.body.postId;
     await PostsHelper.deletePost(postId);
 
     exports.list(req, res);

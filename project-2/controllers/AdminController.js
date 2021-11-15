@@ -26,9 +26,11 @@ exports.deleteUser = async function (req, res) {
                 id: req.body.id
             }
         })
+        .then(exports.users(req, res))
+        .catch(exports.users(req, res));
     }
 
-    exports.users(req, res)
+    
 }
 
 exports.updateUser = async function (req, res) {
