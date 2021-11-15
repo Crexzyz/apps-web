@@ -137,7 +137,7 @@ class TicTacToe {
             return $diagsStatus;
         }
 
-        if($this->turnNumber >= 7) {
+        if($this->turnNumber >= 9) {
             $this->status = $this->STATUS_FINISHED;
             return 'draw';
         }
