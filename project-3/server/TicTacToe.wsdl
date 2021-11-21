@@ -26,6 +26,9 @@
     <message name="startGameIn"/>
     <message name="startGameOut"/>
 
+    <message name="resetGameIn"/>
+    <message name="resetGameOut"/>
+
     <message name="markIn">
         <part name="row" type="xsd:int"/>
         <part name="column" type="xsd:int"/>
@@ -76,6 +79,11 @@
             <documentation>TicTacToe::startGame() Starts the timer and allows to mark the board.</documentation>
             <input message="tns:startGameIn"/>
             <output message="tns:startGameOut"/>
+        </operation>
+        <operation name="resetGame">
+            <documentation>TicTacToe::resetGame() Resets the whole status of the game.</documentation>
+            <input message="tns:resetGameIn"/>
+            <output message="tns:resetGameOut"/>
         </operation>
         <operation name="mark">
             <documentation>TicTacToe::mark() Marks the symbol (X) on the board.</documentation>
@@ -134,6 +142,19 @@
         </operation>
         <operation name="startGame">
             <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#startGame"/>
+            <input>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:B72905_TicTacToe"/>
+            </output>
+        </operation>
+        <operation name="resetGame">
+            <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#resetGame"/>
             <input>
                 <soap:body use="encoded"
                            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
@@ -242,7 +263,7 @@
 
     <service name="B72905_TicTacToeService">
         <port name="B72905_TicTacToePort" binding="tns:B72905_TicTacToeBinding">
-            <soap:address location="http://163.178.104.144:80/~eb72905/TicTacToe/"/>
+            <soap:address location="http://titanic.ecci.ucr.ac.cr:80/~eb72905/TicTacToe/"/>
         </port>
     </service>
 </definitions>
