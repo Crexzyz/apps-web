@@ -170,7 +170,7 @@ class TicTacToe {
             }
         }
 
-        $markIndex = random_int(0, count($freePositions) - 1);
+        $markIndex = mt_rand(0, count($freePositions) - 1);
         $markPosition = $freePositions[$markIndex];
         $status = $this->mark($markPosition[0], $markPosition[1]);
         if($status !== $this->STATUS_INVALID_MOVEMENT)
