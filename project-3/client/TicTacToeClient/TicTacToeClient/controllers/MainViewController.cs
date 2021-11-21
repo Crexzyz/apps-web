@@ -1,39 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace TicTacToeClient.controllers
 {
     public class MainViewController
     {
         private B72905.B72905_TicTacToePortClient client = new B72905.B72905_TicTacToePortClient();
-        private String lastStatus { get; set; }
+        private string LastStatus { get; set; }
+        public bool BotPlaying { get; set; } = true;
+        public Point BotPlay { get; set; }
+
+        public static readonly string CONTROLLER_INVALID = "invalidMovement";
+        public static readonly string CONTROLLER_PROGRESS = "inProgress";
+        public static readonly string CONTROLLER_FINISHED = "finished";
+        public static readonly string CONTROLLER_STANDBY = "standby";
+
+        public static readonly string MESSAGE_INVALID = "Invalid movement";
+        public static readonly string MESSAGE_PROGRESS = "Game in progress";
+        public static readonly string MESSAGE_FINISHED_REPEAT = "Game already finished";
+        public static readonly string MESSAGE_FINISHED = "Game finished";
+        public static readonly string MESSAGE_STANDBY = "Game has not started";
+        public static readonly string MESSAGE_UNEXPECTED = "Unexpected status";
+
 
         public MainViewController()
         {
-            lastStatus = "standby";
+            LastStatus = "standby";
         }
         public void StartGame()
         {
             client.startGame();
         }
 
-        public String Mark(int row, int col)
+        private string StatusToMessage(string controllerStatus)
         {
-            String status = client.mark(row, col);
+            string status;
+            if (controllerStatus == CONTROLLER_INVALID)
+                status = MESSAGE_INVALID;
+            else if (controllerStatus == CONTROLLER_PROGRESS)
+                status = MESSAGE_PROGRESS;
+            else if (controllerStatus == CONTROLLER_FINISHED && LastStatus == CONTROLLER_PROGRESS)
+                status = MESSAGE_FINISHED;
+            else if (controllerStatus == CONTROLLER_FINISHED && LastStatus == CONTROLLER_FINISHED)
+                status = MESSAGE_FINISHED_REPEAT;
+            else if (controllerStatus == CONTROLLER_STANDBY)
+                status = MESSAGE_STANDBY;
+            else
+                status = MESSAGE_UNEXPECTED;
 
-            if (status == "invalidMovement")
-                return "Invalid Movement";
-            else if (status == "inProgress")
-                return "In progress";
-            else if (status == "finished")
-                return "Game finished";
-            else if (status == "standby")
-                return "Game has not started";
+            LastStatus = controllerStatus;
+            return status;
+        }
 
-            return "Unexpected status";
+        public string BotMark()
+        {
+            if(LastStatus == CONTROLLER_FINISHED)
+            {
+                return MESSAGE_FINISHED;
+            }
+
+            string controllerStatus = client.botPlay();
+            string status = StatusToMessage(controllerStatus);
+
+            if (status == MESSAGE_FINISHED)
+            {
+                BotPlay = new Point(-1, -1);
+            }
+            else
+            {
+                string[] botCoordinates = client.getLastBotPlay().Split(',');
+                // X = col, Y = row
+                BotPlay = new Point(int.Parse(botCoordinates[1]), int.Parse(botCoordinates[0]));
+            }
+
+            return status;
+        }
+
+        public string Mark(int row, int col)
+        {
+            string controllerStatus = client.mark(row, col);
+            return StatusToMessage(controllerStatus);
+        }
+
+        public string[] GetWinnerInfo()
+        {
+            return client.getWinnerInfo().Split(',');
         }
     }
 }
