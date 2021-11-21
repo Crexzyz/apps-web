@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using Newtonsoft.Json;
+using TicTacToeClient.models;
 
 namespace TicTacToeClient.controllers
 {
@@ -9,6 +13,8 @@ namespace TicTacToeClient.controllers
         private string LastStatus { get; set; }
         public bool BotPlaying { get; set; } = true;
         public Point BotPlay { get; set; }
+
+        public List<TopPlayerEntry> TopPlayers { get; set; }
 
         public static readonly string CONTROLLER_INVALID = "invalidMovement";
         public static readonly string CONTROLLER_PROGRESS = "inProgress";
@@ -26,6 +32,13 @@ namespace TicTacToeClient.controllers
         public MainViewController()
         {
             LastStatus = "standby";
+            UpdateTopPlayers();
+        }
+
+        public void UpdateTopPlayers()
+        {
+            string topPlayersJsonString = client.getTopPlayers();
+            TopPlayers = JsonConvert.DeserializeObject<List<TopPlayerEntry>>(topPlayersJsonString);
         }
         public void StartGame()
         {

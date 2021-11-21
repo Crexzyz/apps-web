@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using TicTacToeClient.controllers;
 using System.Threading;
+using TicTacToeClient.models;
 
 namespace TicTacToeClient
 {
@@ -24,6 +25,15 @@ namespace TicTacToeClient
                 control.MouseEnter += new EventHandler(Board_Hover);
                 control.MouseLeave += new EventHandler(Board_Leave);
             }
+
+            foreach (TopPlayerEntry player in controller.TopPlayers)
+            {
+                string[] subItems = { player.Name, player.Time.ToString() };
+                ListViewItem item = new ListViewItem(subItems);
+                TopPlayersList.Items.Add(item);
+            }
+
+            TopPlayersList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -179,6 +189,11 @@ namespace TicTacToeClient
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
