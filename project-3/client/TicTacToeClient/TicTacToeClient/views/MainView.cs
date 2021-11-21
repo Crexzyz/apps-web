@@ -110,7 +110,7 @@ namespace TicTacToeClient
             var panel = sender as Panel;
             if (panel.BackColor == Color.Green)
                 return;
-            panel.BackColor = Color.White;
+            panel.BackColor = Color.LightGray;
         }
 
         private void Board_Leave(object sender, EventArgs e)
