@@ -245,6 +245,9 @@ class TicTacToe {
     public function saveTime() {
         if($this->status !== $this->STATUS_FINISHED || $this->saveableGame === false) 
             return $this->STATUS_INVALID_MOVEMENT;
+            
+        if($this->winnerInfo === 'draw')
+            return $this->STATUS_INVALID_MOVEMENT;
         
         $this->updateTop();
         $this->saveableGame = false;
@@ -254,6 +257,8 @@ class TicTacToe {
     public function mark($row = -1, $col = -1, $botPlaying=false) {
         if($this->botPlayedLastTurn === false && $botPlaying === false)
             $this->saveableGame = false;
+
+        $this->botPlayedLastTurn = $botPlaying;
 
         if($this->status === $this->STATUS_STANDBY)
             return $this->status;
@@ -278,9 +283,11 @@ class TicTacToe {
         if($this->status === $this->STATUS_FINISHED) {
             $endTime = microtime(true);
             $this->playerFinalTime = $endTime - $this->playerStartTime;
-        }
 
-        $this->botPlayedLastTurn = $botPlaying;
+            if($botPlaying)
+                $this->saveableGame = false;
+        }
+        
         return $this->status;
     }
 }
