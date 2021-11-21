@@ -255,11 +255,6 @@ class TicTacToe {
     }
 
     public function mark($row = -1, $col = -1, $botPlaying=false) {
-        if($this->botPlayedLastTurn === false && $botPlaying === false)
-            $this->saveableGame = false;
-
-        $this->botPlayedLastTurn = $botPlaying;
-
         if($this->status === $this->STATUS_STANDBY)
             return $this->status;
 
@@ -275,6 +270,11 @@ class TicTacToe {
             $this->status = $this->STATUS_INVALID_MOVEMENT;
             return $this->status;
         }
+
+        if($this->botPlayedLastTurn === false && $botPlaying === false)
+            $this->saveableGame = false;
+
+        $this->botPlayedLastTurn = $botPlaying;
 
         $this->board[$row][$col] = $this->turn;
         $this->toggleTurn();
