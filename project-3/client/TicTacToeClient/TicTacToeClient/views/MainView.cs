@@ -26,6 +26,11 @@ namespace TicTacToeClient
                 control.MouseLeave += new EventHandler(Board_Leave);
             }
 
+            UpdateTopPlayers();
+        }
+
+        private void UpdateTopPlayers()
+        {
             foreach (TopPlayerEntry player in controller.TopPlayers)
             {
                 string[] subItems = { player.Name, player.Time.ToString() };
@@ -38,10 +43,10 @@ namespace TicTacToeClient
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            LastMovementLabel.Text = "Connecting to server...";
+            StatusLabel.Text = "Connecting to server...";
             controller.BotPlaying = PlayVsAI.Checked;
             controller.StartGame();
-            LastMovementLabel.Text = "Game started";
+            StatusLabel.Text = "Game started";
             StartButton.Enabled = false;
             PlayVsAI.Enabled = false;
         }
@@ -153,23 +158,33 @@ namespace TicTacToeClient
             }
         }
 
+        private void RunPostGameTasks()
+        {
+            string[] winnerInfo = controller.GetWinnerInfo();
+            if(winnerInfo.Length > 2)
+                ShowWinner(winnerInfo[0], winnerInfo[1]);
+
+            string gameTime = controller.GetGameTime();
+            TimeLabel.Text = "Time: " + gameTime + " seconds";
+
+            SaveTimeButton.Enabled = true;
+            PlayerNameTextBox.Enabled = true;
+        }
+
         private void Board_Click(object sender, MouseEventArgs e)
         {
-            LastMovementLabel.Text = "Connecting to server...";
+            StatusLabel.Text = "Connecting to server...";
 
             var clickedRow = Board.GetRow(sender as Control);
             var clickedColumn = Board.GetColumn(sender as Control);
             string status = controller.Mark(clickedRow, clickedColumn);
-            LastMovementLabel.Text = status;
+            StatusLabel.Text = status;
             SetCellBackground(status, sender as Panel);
 
             if (status != MainViewController.MESSAGE_PROGRESS)
             {
                 if (ShowWinner(status))
-                {
-                    string[] winnerInfo = controller.GetWinnerInfo();
-                    ShowWinner(winnerInfo[0], winnerInfo[1]);
-                }
+                    RunPostGameTasks();
 
                 return;
             }
@@ -188,14 +203,14 @@ namespace TicTacToeClient
             SetCellBackground(message, cell);
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void SaveTimeButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            string playerName = PlayerNameTextBox.Text;
+            StatusLabel.Text = "Connecting to server...";
+            controller.SavePlayerTime(playerName);
+            TopPlayersList.Items.Clear();
+            UpdateTopPlayers();
+            StatusLabel.Text = "Saved";
         }
     }
 }

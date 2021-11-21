@@ -99,5 +99,17 @@ namespace TicTacToeClient.controllers
         {
             return client.getWinnerInfo().Split(',');
         }
+
+        public string GetGameTime()
+        {
+            return client.getTime();
+        }
+
+        public void SavePlayerTime(string playerName)
+        {
+            client.setPlayerName(playerName);
+            client.saveTime();
+            UpdateTopPlayers();
+        }
     }
 }
