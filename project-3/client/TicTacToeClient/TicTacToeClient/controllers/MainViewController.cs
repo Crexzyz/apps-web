@@ -75,16 +75,9 @@ namespace TicTacToeClient.controllers
             string controllerStatus = client.botPlay();
             string status = StatusToMessage(controllerStatus);
 
-            if (status == MESSAGE_FINISHED)
-            {
-                BotPlay = new Point(-1, -1);
-            }
-            else
-            {
-                string[] botCoordinates = client.getLastBotPlay().Split(',');
-                // X = col, Y = row
-                BotPlay = new Point(int.Parse(botCoordinates[1]), int.Parse(botCoordinates[0]));
-            }
+            string[] botCoordinates = client.getLastBotPlay().Split(',');
+            // X = col, Y = row
+            BotPlay = new Point(int.Parse(botCoordinates[1]), int.Parse(botCoordinates[0]));
 
             return status;
         }
@@ -102,14 +95,26 @@ namespace TicTacToeClient.controllers
 
         public string GetGameTime()
         {
-            return client.getTime();
+            return client.getTime().ToString();
         }
 
-        public void SavePlayerTime(string playerName)
+        public void ResetGame()
+        {
+            client.resetGame();
+        }
+
+        public string SavePlayerTime(string playerName)
         {
             client.setPlayerName(playerName);
-            client.saveTime();
+            string controllerStatus = client.saveTime();
+            string status;
+            if (controllerStatus == CONTROLLER_FINISHED)
+                status = "Saved";
+            else
+                status = "Game could not be saved";
+
             UpdateTopPlayers();
+            return status;
         }
     }
 }

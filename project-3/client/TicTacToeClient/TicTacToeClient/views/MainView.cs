@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using TicTacToeClient.controllers;
-using System.Threading;
 using TicTacToeClient.models;
 
 namespace TicTacToeClient
@@ -43,12 +42,28 @@ namespace TicTacToeClient
 
         private void StartButton_Click(object sender, EventArgs e)
         {
+            if(StartButton.Text == "Replay")
+            {
+                CleanBoard();
+                controller.ResetGame();
+            }
+
             StatusLabel.Text = "Connecting to server...";
             controller.BotPlaying = PlayVsAI.Checked;
             controller.StartGame();
             StatusLabel.Text = "Game started";
             StartButton.Enabled = false;
             PlayVsAI.Enabled = false;
+        }
+
+        private void CleanBoard()
+        {
+            foreach (Control control in Board.Controls)
+            {
+                Panel panel = control as Panel;
+                panel.BackColor = default;
+                panel.BackgroundImage = null;
+            }
         }
 
         private void Board_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
@@ -169,6 +184,10 @@ namespace TicTacToeClient
 
             SaveTimeButton.Enabled = true;
             PlayerNameTextBox.Enabled = true;
+
+            StartButton.Text = "Replay";
+            StartButton.Enabled = true;
+            PlayVsAI.Enabled = true;
         }
 
         private void Board_Click(object sender, MouseEventArgs e)
@@ -195,8 +214,13 @@ namespace TicTacToeClient
             status = controller.BotMark();
             var botCoordinates = controller.BotPlay;
             BotMark(botCoordinates.Y, botCoordinates.X, status);
-        }
 
+            StatusLabel.Text = status;
+            if (status != MainViewController.MESSAGE_PROGRESS)
+                if (ShowWinner(status))
+                    RunPostGameTasks();
+        }
+            
         private void BotMark(int row, int col, string message)
         {
             Panel cell = Board.GetControlFromPosition(col, row) as Panel;
@@ -207,10 +231,10 @@ namespace TicTacToeClient
         {
             string playerName = PlayerNameTextBox.Text;
             StatusLabel.Text = "Connecting to server...";
-            controller.SavePlayerTime(playerName);
+            string status = controller.SavePlayerTime(playerName);
             TopPlayersList.Items.Clear();
             UpdateTopPlayers();
-            StatusLabel.Text = "Saved";
+            StatusLabel.Text = status;
         }
     }
 }

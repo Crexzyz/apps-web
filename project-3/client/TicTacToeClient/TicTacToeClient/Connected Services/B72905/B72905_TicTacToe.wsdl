@@ -7,6 +7,8 @@
   <wsdl:message name="setPlayerNameOut" />
   <wsdl:message name="startGameIn" />
   <wsdl:message name="startGameOut" />
+  <wsdl:message name="resetGameIn" />
+  <wsdl:message name="resetGameOut" />
   <wsdl:message name="markIn">
     <wsdl:part name="row" type="xsd:int" />
     <wsdl:part name="column" type="xsd:int" />
@@ -28,7 +30,7 @@
   </wsdl:message>
   <wsdl:message name="getTimeIn" />
   <wsdl:message name="getTimeOut">
-    <wsdl:part name="return" type="xsd:string" />
+    <wsdl:part name="return" type="xsd:decimal" />
   </wsdl:message>
   <wsdl:message name="botPlayIn" />
   <wsdl:message name="botPlayOut">
@@ -48,6 +50,11 @@
       <documentation>TicTacToe::startGame() Starts the timer and allows to mark the board.</documentation>
       <wsdl:input message="tns:startGameIn" />
       <wsdl:output message="tns:startGameOut" />
+    </wsdl:operation>
+    <wsdl:operation name="resetGame">
+      <documentation>TicTacToe::resetGame() Resets the whole status of the game.</documentation>
+      <wsdl:input message="tns:resetGameIn" />
+      <wsdl:output message="tns:resetGameOut" />
     </wsdl:operation>
     <wsdl:operation name="mark">
       <documentation>TicTacToe::mark() Marks the symbol (X) on the board.</documentation>
@@ -98,6 +105,15 @@
     </wsdl:operation>
     <wsdl:operation name="startGame">
       <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#startGame" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetGame">
+      <soap:operation soapAction="urn:B72905_TicTacToe#TicTacToe#resetGame" />
       <wsdl:input>
         <soap:body use="encoded" namespace="urn:B72905_TicTacToe" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
@@ -171,7 +187,7 @@
   </wsdl:binding>
   <wsdl:service name="B72905_TicTacToeService">
     <wsdl:port name="B72905_TicTacToePort" binding="tns:B72905_TicTacToeBinding">
-      <soap:address location="http://163.178.104.144:80/~eb72905/TicTacToe/" />
+      <soap:address location="http://titanic.ecci.ucr.ac.cr:80/~eb72905/TicTacToe/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -32,6 +32,7 @@
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.TimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.SaveTimeButton = new System.Windows.Forms.Button();
             this.Board = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -50,7 +51,6 @@
             this.TopPlayersList = new System.Windows.Forms.ListView();
             this.PlayerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PlayerTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SaveTimeButton = new System.Windows.Forms.Button();
             this.PlayerNameTextBox = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -71,17 +71,16 @@
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // LastMovementLabel
+            // StatusLabel
             // 
-            this.StatusLabel.Name = "LastMovementLabel";
+            this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(63, 20);
             this.StatusLabel.Text = "Standby";
             // 
             // TimeLabel
             // 
             this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(63, 20);
-            this.TimeLabel.Text = "No time";
+            this.TimeLabel.Size = new System.Drawing.Size(0, 20);
             // 
             // tableLayoutPanel1
             // 
@@ -102,6 +101,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.71428F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(663, 451);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // SaveTimeButton
+            // 
+            this.SaveTimeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveTimeButton.Enabled = false;
+            this.SaveTimeButton.Location = new System.Drawing.Point(445, 405);
+            this.SaveTimeButton.Name = "SaveTimeButton";
+            this.SaveTimeButton.Size = new System.Drawing.Size(215, 43);
+            this.SaveTimeButton.TabIndex = 1;
+            this.SaveTimeButton.Text = "Save time";
+            this.SaveTimeButton.UseVisualStyleBackColor = true;
+            this.SaveTimeButton.Click += new System.EventHandler(this.SaveTimeButton_Click);
             // 
             // Board
             // 
@@ -276,7 +289,7 @@
             this.topLabel.Name = "topLabel";
             this.topLabel.Size = new System.Drawing.Size(209, 31);
             this.topLabel.TabIndex = 0;
-            this.topLabel.Text = "Top 10";
+            this.topLabel.Text = "Vs. AI Top 10";
             this.topLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TopPlayersList
@@ -303,20 +316,6 @@
             // 
             this.PlayerTime.Text = "Time";
             this.PlayerTime.Width = 100;
-            // 
-            // SaveTimeButton
-            // 
-            this.SaveTimeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveTimeButton.Enabled = false;
-            this.SaveTimeButton.Location = new System.Drawing.Point(445, 405);
-            this.SaveTimeButton.Name = "SaveTimeButton";
-            this.SaveTimeButton.Size = new System.Drawing.Size(215, 43);
-            this.SaveTimeButton.TabIndex = 1;
-            this.SaveTimeButton.Text = "Save time";
-            this.SaveTimeButton.UseVisualStyleBackColor = true;
-            this.SaveTimeButton.Click += new System.EventHandler(this.SaveTimeButton_Click);
             // 
             // PlayerNameTextBox
             // 

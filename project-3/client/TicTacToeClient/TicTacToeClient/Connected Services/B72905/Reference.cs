@@ -29,6 +29,13 @@ namespace TicTacToeClient.B72905 {
         [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#startGame", ReplyAction="*")]
         System.Threading.Tasks.Task startGameAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#resetGame", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
+        void resetGame();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#resetGame", ReplyAction="*")]
+        System.Threading.Tasks.Task resetGameAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#mark", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -68,11 +75,11 @@ namespace TicTacToeClient.B72905 {
         [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#getTime", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        string getTime();
+        decimal getTime();
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#getTime", ReplyAction="*")]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        System.Threading.Tasks.Task<string> getTimeAsync();
+        System.Threading.Tasks.Task<decimal> getTimeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:B72905_TicTacToe#TicTacToe#botPlay", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
@@ -136,6 +143,14 @@ namespace TicTacToeClient.B72905 {
             return base.Channel.startGameAsync();
         }
         
+        public void resetGame() {
+            base.Channel.resetGame();
+        }
+        
+        public System.Threading.Tasks.Task resetGameAsync() {
+            return base.Channel.resetGameAsync();
+        }
+        
         public string mark(int row, int column) {
             return base.Channel.mark(row, column);
         }
@@ -168,11 +183,11 @@ namespace TicTacToeClient.B72905 {
             return base.Channel.saveTimeAsync();
         }
         
-        public string getTime() {
+        public decimal getTime() {
             return base.Channel.getTime();
         }
         
-        public System.Threading.Tasks.Task<string> getTimeAsync() {
+        public System.Threading.Tasks.Task<decimal> getTimeAsync() {
             return base.Channel.getTimeAsync();
         }
         
